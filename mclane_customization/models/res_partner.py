@@ -8,4 +8,4 @@ class ResPartner(models.Model):
 
     license_number = fields.Char('License Number')
     license_file = fields.Binary('License File')
-    expiration_date = fields.Date('Expriration Date')
+    expiration_date = fields.Date('Expiration Date')
