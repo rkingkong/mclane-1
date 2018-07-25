@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="license_permits" name="Link to frontend portal" inherit_id="portal.frontend_layout">
+        <xpath expr="//li[@id='o_logout']" position="before">
+            <li><a href="/license-permits" role="menuitem">License &amp; Permits</a></li>
+        </xpath>
+    </template>
+    <template id="license_permits_temp" name="License and Permits">
+            <t t-call="website.layout">
+                <div class="container">
+                <form action="/my/account/update" method="post" enctype="multipart/form-data" >
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <div class="row o_portal_details">
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-12">
+                              <div t-if="error_message" class="alert alert-danger">
+                                  <t t-foreach="error_message" t-as="err"><t t-esc="err"/><br /></t>
+                              </div>
+                            </div>
+                            <div t-attf-class="form-group col-lg-8">
+                                <label class="control-label" for="license_number">License Number</label>
+                                <input type="text" name="license_number" class="form-control" />
+                            </div>
+                            <div t-attf-class="form-group col-lg-8">
+                                <label class="control-label" for="expiration_date">Expiration Date</label>
+                                <input type="date" name="expiration_date" class="form-control" />
+                            </div>
+                            <div t-attf-class="form-group col-lg-8">
+                                <label class="control-label" for="license_file">Upload License File</label>
+                                <input type="file" class="form-control" name="license_file"/>
+
+                            </div>
+
+                            <div class="clearfix" />
+                            <input type="hidden" name="redirect" t-att-value="redirect"/>
+                        </div>
+                        <div class="clearfix">
+                            <button type="submit" class="btn btn-primary pull-right mb32 ">
+                                Done
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+                </div>
+            </t>
+
+    </template>
+</odoo>
