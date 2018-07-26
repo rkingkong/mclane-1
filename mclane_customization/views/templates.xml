@@ -1,50 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <template id="footer_default_new" inherit_id="website.footer_default" customize_show="True" name="Automatic Footer">
+        <xpath expr="//footer" position="attributes" >
+            <attribute name="t-if">request.session.uid</attribute>
+        </xpath>
+    </template>
+
+    <template id="layout_extend" name="Main layout" inherit_id="website.layout">
+        <xpath expr="//header" position="attributes">
+            <attribute name="t-if">request.session.uid</attribute>
+        </xpath>
+    </template>
 
     <template id="license_permits" name="Link to frontend portal" inherit_id="portal.frontend_layout">
         <xpath expr="//li[@id='o_logout']" position="before">
             <li><a href="/license-permits" role="menuitem">License &amp; Permits</a></li>
         </xpath>
     </template>
+    
     <template id="license_permits_temp" name="License and Permits">
             <t t-call="website.layout">
-                <div class="container">
+
+                <div class="container" style="width:60%;">
                 <form action="/my/account/update" method="post" enctype="multipart/form-data" >
-                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-                <div class="row o_portal_details">
-                    <div class="col-md-8">
-                        <div class="row">
-                            <div class="col-md-12">
-                              <div t-if="error_message" class="alert alert-danger">
-                                  <t t-foreach="error_message" t-as="err"><t t-esc="err"/><br /></t>
-                              </div>
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <div class="row o_portal_details">
+                        <div class="col-md-8">
+                            <div class="row">
+                                <h2>Cigarettes</h2>
+                                <div t-attf-class="form-group col-lg-10">
+                                    <label class="control-label" for="license_number_cig">License Number</label>
+                                    <input type="text" name="license_number_cig" class="form-control" t-att-value="partner.license_number_cig"></input>
+                                </div>
+                                <div t-attf-class="form-group col-lg-10">
+                                    <label class="control-label" for="start_date_cig">Start Date</label>
+                                    <input type="date" name="start_date_cig" class="form-control" t-att-value="partner.start_date_cig"/>
+                                </div>
+                                <div t-attf-class="form-group col-lg-10">
+                                    <label class="control-label" for="expiration_date">Expiration Date</label>
+                                    <input type="date" name="expiration_date_cig" class="form-control" t-att-value="partner.expiration_date_cig"/>
+                                </div>
+                                <div t-attf-class="form-group col-lg-10">
+                                    <label class="control-label" for="license_file_cig">Upload License File</label>
+                                    <input type="file" class="form-control" name="license_file_cig" />
+                                </div>
                             </div>
-                            <div t-attf-class="form-group col-lg-8">
-                                <label class="control-label" for="license_number">License Number</label>
-                                <input type="text" name="license_number" class="form-control" />
-                            </div>
-                            <div t-attf-class="form-group col-lg-8">
-                                <label class="control-label" for="expiration_date">Expiration Date</label>
-                                <input type="date" name="expiration_date" class="form-control" />
-                            </div>
-                            <div t-attf-class="form-group col-lg-8">
-                                <label class="control-label" for="license_file">Upload License File</label>
-                                <input type="file" class="form-control" name="license_file"/>
 
+                            <div class="row">
+                                    <h2>Tobacco</h2>
+                                        <div t-attf-class="form-group col-lg-10">
+                                        <label class="control-label" for="license_number_tc">License Number</label>
+                                        <input type="text" name="license_number_tc" class="form-control" t-att-value="partner.license_number_tc"/>
+                                    </div>
+                                    <div t-attf-class="form-group col-lg-10">
+                                        <label class="control-label" for="start_date_tc">Start Date</label>
+                                        <input type="date" name="start_date_tc" class="form-control" t-att-value="partner.start_date_tc"/>
+                                    </div>
+                                    <div t-attf-class="form-group col-lg-10">
+                                        <label class="control-label" for="expiration_date_tc">Expiration Date</label>
+                                        <input type="date" name="expiration_date_tc" class="form-control" t-att-value="partner.expiration_date_tc"/>
+                                    </div>
+                                    <div t-attf-class="form-group col-lg-10">
+                                        <label class="control-label" for="license_file_tc">Upload License File</label>
+                                        <input type="file" class="form-control" name="license_file_tc"/>
+                                    </div>
                             </div>
+                            <div class="row">
+                                <h2>Sales Tax</h2>
+                                <div t-attf-class="form-group col-lg-10">
+                                    <label class="control-label" for="license_number_sale">License Number</label>
+                                    <input type="text" name="license_number_sale" class="form-control" t-att-value="partner.license_number_sale"/>
+                                </div>
+                                <div t-attf-class="form-group col-lg-10">
+                                    <label class="control-label" for="start_date_sale">Start Date</label>
+                                    <input type="date" name="start_date_sale" class="form-control" t-att-value="partner.start_date_sale"/>
+                                </div>
+                                <div t-attf-class="form-group col-lg-10">
+                                    <label class="control-label" for="expiration_date_sale">Expiration Date</label>
+                                    <input type="date" name="expiration_date_sale" class="form-control" t-att-value="partner.expiration_date_sale"/>
+                                </div>
+                                <div t-attf-class="form-group col-lg-10">
+                                    <label class="control-label" for="license_file_sale">Upload License File</label>
+                                    <input type="file" class="form-control" name="license_file_sale"/>
 
-                            <div class="clearfix" />
-                            <input type="hidden" name="redirect" t-att-value="redirect"/>
-                        </div>
-                        <div class="clearfix">
+                                </div>
+
+                                <div class="clearfix" />
+                                <input type="hidden" name="redirect" t-att-value="redirect"/>
+                            </div>
+                            <div class="row">
                             <button type="submit" class="btn btn-primary pull-right mb32 ">
-                                Done
+                                Save
                             </button>
                         </div>
-                    </div>
-                </div>
 
-            </form>
+                        </div>
+
+                    </div>
+
+                </form>
                 </div>
             </t>
 
