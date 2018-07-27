@@ -8,7 +8,7 @@
     'version': '11.0.2.1',
     'depends': ['contacts', 'website','portal'],
     'data': [
-        #'views/res_partner_view.xml',
+        'views/res_partner_view.xml',
         'views/templates.xml'
     ],
 
