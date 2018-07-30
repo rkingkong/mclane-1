@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="footer_default_new" inherit_id="website.footer_default" customize_show="True" name="Automatic Footer">
+    <template id="footer_default_new" inherit_id="website.layout" customize_show="True" name="Automatic Footer">
         <xpath expr="//footer" position="attributes" >
             <attribute name="t-if">request.session.uid</attribute>
         </xpath>
