@@ -26,7 +26,6 @@ class product_template(models.Model):
         for prod_ob in self:
             prod_ob.margin_msrp = prod_ob.msrp_cost - prod_ob.list_price
 
-
 class res_partner(models.Model):
     _inherit = 'res.partner'
 
@@ -41,12 +40,9 @@ class res_partner(models.Model):
         if partners:
            for res in partners:
                if res.expiration_date_cig >= today_date:
-                   print res.expiration_date_cig
                    res.csr_review_cig = False
                if res.expiration_date_sale >= today_date:
                    res.csr_review_sale = False
-                   print(res.expiration_date_sale)
                if res.expiration_date_tc >= today_date:
                    res.csr_review_tc = False
-                   print(res.expiration_date_tc)
 
