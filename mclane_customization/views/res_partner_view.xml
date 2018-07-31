@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_partner_property_form" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='sales_purchases']/group/group/field[@name='company_id']" position='after'>
+                <group string="Cigarettes" colspan="2">
+                    <field name="license_number_cig"/>
+                    <field name="start_date_cig"/>
+                    <field name="expiration_date_cig"/>
+                    <field name="no_expiration_date_cig"/>
+                    <field name="license_filename_cig" invisible="1"/>
+                    <field name="license_file_cig" widget="FieldBinary" filename="license_filename_cig"/>
+                    <field name="csr_review_cig"/>
+                </group>
+                <group string="Tobacco" colspan="2">
+                    <field name="license_number_tc"/>
+                    <field name="start_date_tc"/>
+                    <field name="expiration_date_tc"/>
+                    <field name="no_expiration_date_tc"/>
+                    <field name="license_filename_tc" invisible="1"/>
+                    <field name="license_file_tc" widget="FieldBinary" filename="license_filename_tc"/>
+                    <field name="csr_review_tc"/>
+                </group>
+                <group string="Sales Tax" colspan="2">
+                    <field name="license_number_sale"/>
+                    <field name="start_date_sale"/>
+                    <field name="expiration_date_sale"/>
+                    <field name="no_expiration_date_sale"/>
+                    <field name="license_filename_sale" invisible="1"/>
+                    <field name="license_file_sale" widget="FieldBinary" filename="license_filename_sale"/>
+                    <field name="csr_review_sale"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+    

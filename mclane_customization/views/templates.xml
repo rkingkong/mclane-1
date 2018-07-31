@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_frontend" inherit_id="website.assets_frontend" name="Shop">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/mclane_customization/static/src/js/website_sale.js"/>
+        </xpath>
+    </template>
+
+    <template id="footer_default_new" inherit_id="website.layout" customize_show="True" name="Automatic Footer">
+        <xpath expr="//footer" position="attributes" >
+            <attribute name="t-if">request.session.uid</attribute>
+        </xpath>
+    </template>
+
+    <template id="layout_extend" name="Main layout" inherit_id="website.layout">
+        <xpath expr="//header" position="attributes">
+            <attribute name="t-if">request.session.uid</attribute>
+        </xpath>
+    </template>
+
+    <template id="license_permits" name="Link to frontend portal" inherit_id="portal.frontend_layout">
+        <xpath expr="//li[@id='o_logout']" position="before">
+            <li><a href="/license-permits" role="menuitem">License &amp; Permits</a></li>
+        </xpath>
+    </template>
+    
+    <template id="license_permits_temp" name="License and Permits">
+            <t t-call="website.layout">
+                <div class="container" style="width:60%;">
+                    <t t-if="error" t-foreach="error.get('error_message', [])" t-as="err">
+                        <h4 class="text-danger" t-esc="err" />
+                    </t>
+
+                <form action="/my/account/update" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <input type="hidden" name="submitted" value="1" />
+
+                    <div class="row o_portal_details">
+                        <div class="col-md-8">
+                            <div class="row">
+                                <h2>Cigarettes</h2>
+                                <div class="form-group col-lg-10">
+                                    <label class="control-label" for="license_number_cig">License Number</label>
+                                    <input type="text" name="license_number_cig" class="form-control"
+                                           t-att-value="partner.license_number_cig"/>
+                                </div>
+                                <div class="form-group col-lg-10">
+                                    <label class="control-label" for="start_date_cig">Start Date</label>
+                                    <input type="date" name="start_date_cig" class="form-control" t-att-value="partner.start_date_cig"/>
+                                </div>
+                                <div class="form-group col-lg-10">
+                                    <label class="control-label" for="expiration_date">Expiration Date</label>
+                                    <input type="date" name="expiration_date_cig" class="form-control" t-att-value="partner.expiration_date_cig"/>
+                                </div>
+                                <div class="form-group col-lg-10">
+                                     <div class="o_checkbox">
+                                         <label class="control-label" for="no_expiration_date_cig">No Expiration Date</label>
+                                         <input style="margin-left: 15px;" type="checkbox" id="checkbox"
+                                                name="no_expiration_date_cig" data-val="true" value="True"
+                                                t-att-checked="'checked' if partner.no_expiration_date_cig else None"/>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-10">
+                                    <label class="control-label" for="license_file_cig">Upload License File</label>
+                                    <input type="file" class="form-control" name="license_file_cig" />
+                                </div>
+                                <div class="form-group col-lg-10">
+                                    <t t-if="partner.license_file_attachment_cig.id">
+                                        <label>Download License File</label><br/>
+                                        <a t-attf-href="/web/content/{{partner.license_file_attachment_cig.id}}?download=true">
+                                            <span class="fa fa-download"/>
+                                            <t t-if="'image' in partner.license_file_attachment_cig.mimetype">
+                                                <span style="width:20px" class="fa fa-picture-o"/><span t-field="partner.license_file_attachment_cig.datas_fname" />
+                                            </t>
+                                            <t t-if="'image' not in partner.license_file_attachment_cig.mimetype">
+                                                <span style="width:20px" class="fa fa-file-o"/><span t-field="partner.license_file_attachment_cig.datas_fname" />
+                                            </t>
+                                        </a>
+                                    </t>
+                                </div>
+                                <div class="form-group col-lg-10">
+                                    <div class="o_checkbox">
+                                        <label class="control-label" for="csr_review_cig">CSR Reviewed</label>
+                                        <input style="margin-left: 15px;" type="checkbox" id="checkbox" value="True"
+                                               name="csr_review_cig"
+                                               t-att-checked="'checked' if partner.csr_review_cig else None"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <h2>Tobacco</h2>
+                                    <div class="form-group col-lg-10">
+                                    <label class="control-label" for="license_number_tc">License Number</label>
+                                    <input type="text" name="license_number_tc" class="form-control" t-att-value="partner.license_number_tc"/>
+                                </div>
+                                <div class="form-group col-lg-10">
+                                    <label class="control-label" for="start_date_tc">Start Date</label>
+                                    <input type="date" name="start_date_tc" class="form-control" t-att-value="partner.start_date_tc"/>
+                                </div>
+                                <div class="form-group col-lg-10">
+                                    <label class="control-label" for="expiration_date_tc">Expiration Date</label>
+                                    <input type="date" name="expiration_date_tc" class="form-control" t-att-value="partner.expiration_date_tc"/>
+                                </div>
+                                <div class="form-group col-lg-10">
+                                    <div class="o_checkbox">
+                                        <label class="control-label" for="no_expiration_date_tc">No Expiration Date</label>
+                                        <input style="margin-left: 15px;" type="checkbox" value="True" id="checkbox"
+                                               name="no_expiration_date_tc"
+                                               t-att-checked="'checked' if partner.no_expiration_date_tc else None"/>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-10">
+                                    <label class="control-label" for="license_file_tc">Upload License File</label>
+                                    <input type="file" class="form-control" name="license_file_tc"/>
+                                </div>
+                                <div class="form-group col-lg-10">
+                                    <t t-if="partner.license_file_attachment_tc.id">
+                                        <label>Download License File</label><br/>
+                                        <a t-attf-href="/web/content/{{partner.license_file_attachment_tc.id}}?download=true">
+                                            <span class="fa fa-download"/>
+                                            <t t-if="'image' in partner.license_file_attachment_tc.mimetype">
+                                                <span style="width:20px" class="fa fa-picture-o"/><span t-field="partner.license_file_attachment_tc.datas_fname" />
+                                            </t>
+                                            <t t-if="'image' not in partner.license_file_attachment_tc.mimetype">
+                                                <span style="width:20px" class="fa fa-file-o"/><span t-field="partner.license_file_attachment_tc.datas_fname" />
+                                            </t>
+                                        </a>
+                                    </t>
+                                </div>
+                                <div class="form-group col-lg-10">
+                                    <div class="o_checkbox">
+                                        <label class="control-label" for="csr_review_sale">CSR Reviewed</label>
+                                        <input style="margin-left: 15px;" type="checkbox" id="checkbox" value="True" name="csr_review_sale" t-att-checked="'checked' if partner.csr_review_sale else None"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <h2>Sales Tax</h2>
+                                <div class="form-group col-lg-10">
+                                    <label class="control-label" for="license_number_sale">License Number</label>
+                                    <input type="text" name="license_number_sale" class="form-control" t-att-value="partner.license_number_sale"/>
+                                </div>
+                                <div class="form-group col-lg-10">
+                                    <label class="control-label" for="start_date_sale">Start Date</label>
+                                    <input type="date" name="start_date_sale" class="form-control" t-att-value="partner.start_date_sale"/>
+                                </div>
+                                <div class="form-group col-lg-10">
+                                    <label class="control-label" for="expiration_date_sale">Expiration Date</label>
+                                    <input type="date" name="expiration_date_sale" class="form-control" t-att-value="partner.expiration_date_sale"/>
+                                </div>
+                                <div class="form-group col-lg-10">
+                                    <div class="o_checkbox">
+                                        <label class="control-label" for="no_expiration_date_sale">No Expiration Date</label>
+                                        <input style="margin-left: 15px;" type="checkbox" value="True" id="checkbox" name="no_expiration_date_sale" t-att-checked="'checked' if partner.no_expiration_date_sale else None"/>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-10">
+                                    <label class="control-label" for="license_file_sale">Upload License File</label>
+                                    <input type="file" class="form-control" name="license_file_sale"/>
+                                </div>
+                                <div class="form-group col-lg-10">
+                                    <t t-if="partner.license_file_attachment_sale.id">
+                                        <label>Download License File</label><br/>
+                                        <a t-attf-href="/web/content/{{partner.license_file_attachment_sale.id}}?download=true">
+                                            <span class="fa fa-download"/>
+                                            <t t-if="'image' in partner.license_file_attachment_sale.mimetype">
+                                                <span style="width:20px" class="fa fa-picture-o"/><span t-field="partner.license_file_attachment_sale.datas_fname" />
+                                            </t>
+                                            <t t-if="'image' not in partner.license_file_attachment_sale.mimetype">
+                                                <span style="width:20px" class="fa fa-file-o"/><span t-field="partner.license_file_attachment_sale.datas_fname" />
+                                            </t>
+                                        </a>
+                                    </t>
+                                </div>
+                                <div class="form-group col-lg-10">
+                                    <div class="o_checkbox">
+                                        <label class="control-label" for="csr_review_tc">CSR Reviewed</label>
+                                        <input style="margin-left: 15px;" type="checkbox" id="checkbox" value="True" name="csr_review_tc" t-att-checked="'checked' if partner.csr_review_tc else None"/>
+                                    </div>
+                                </div>
+                                <div class="clearfix" />
+                                <input type="hidden" name="redirect" t-att-value="redirect"/>
+                            </div>
+                            <button type="submit" class="btn btn-primary pull-right mb32 ">
+                                Save
+                            </button>
+                        </div>
+
+                    </div>
+
+                </form>
+                </div>
+            </t>
+
+    </template>
+</odoo>
