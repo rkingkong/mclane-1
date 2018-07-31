@@ -45,3 +45,4 @@ class res_partner(models.Model):
                if res.expiration_date_tc and res.expiration_date_tc <= today_date:
                    res.csr_review_tc = False
 
+
