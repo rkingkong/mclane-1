@@ -15,5 +15,6 @@
     ],
     'data': [
         'views/product_view_msrp.xml',
+        'data/ir_cron.xml',
     ],
 }
