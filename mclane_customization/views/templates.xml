@@ -78,14 +78,7 @@
                                         </a>
                                     </t>
                                 </div>
-                                <div class="form-group col-lg-10">
-                                    <div class="o_checkbox">
-                                        <label class="control-label" for="csr_review_cig">CSR Reviewed</label>
-                                        <input style="margin-left: 15px;" type="checkbox" id="checkbox" value="True"
-                                               name="csr_review_cig"
-                                               t-att-checked="'checked' if partner.csr_review_cig else None"/>
-                                    </div>
-                                </div>
+                                
                             </div>
 
                             <div class="row">
@@ -128,12 +121,7 @@
                                         </a>
                                     </t>
                                 </div>
-                                <div class="form-group col-lg-10">
-                                    <div class="o_checkbox">
-                                        <label class="control-label" for="csr_review_sale">CSR Reviewed</label>
-                                        <input style="margin-left: 15px;" type="checkbox" id="checkbox" value="True" name="csr_review_sale" t-att-checked="'checked' if partner.csr_review_sale else None"/>
-                                    </div>
-                                </div>
+                                
                             </div>
                             <div class="row">
                                 <h2>Sales Tax</h2>
@@ -173,12 +161,7 @@
                                         </a>
                                     </t>
                                 </div>
-                                <div class="form-group col-lg-10">
-                                    <div class="o_checkbox">
-                                        <label class="control-label" for="csr_review_tc">CSR Reviewed</label>
-                                        <input style="margin-left: 15px;" type="checkbox" id="checkbox" value="True" name="csr_review_tc" t-att-checked="'checked' if partner.csr_review_tc else None"/>
-                                    </div>
-                                </div>
+                                
                                 <div class="clearfix" />
                                 <input type="hidden" name="redirect" t-att-value="redirect"/>
                             </div>
