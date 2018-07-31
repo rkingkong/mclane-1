@@ -36,13 +36,12 @@ class res_partner(models.Model):
         partners = self.search(['|','|',('expiration_date_cig','>=',today_date),
                     ('expiration_date_sale','>=',today_date),
                     ('expiration_date_tc','>=',today_date)])
-        print(today_date)
         if partners:
            for res in partners:
-               if res.expiration_date_cig >= today_date:
+               if res.expiration_date_cig and res.expiration_date_cig >= today_date:
                    res.csr_review_cig = False
-               if res.expiration_date_sale >= today_date:
+               if res.expiration_date_sale and res.expiration_date_sale >= today_date:
                    res.csr_review_sale = False
-               if res.expiration_date_tc >= today_date:
+               if res.expiration_date_tc and res.expiration_date_tc >= today_date:
                    res.csr_review_tc = False
 
