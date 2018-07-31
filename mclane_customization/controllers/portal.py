@@ -64,11 +64,27 @@ class WebsiteSalePortal(CustomerPortal):
 
 class Portal(Controller):
 
-    @route(['/my/account/update'], type='http', auth="public", methods=['POST'], website=True, csrf=False)
+    @route(['/my/account/update'], type='http', auth="public", methods=['POST', 'GET'], website=True)
     def change_value(self, **kw):
+        global new_attachment
         partner = request.env.user.partner_id
+        error = {'error_message': []}
+
+        if 'submitted' in kw:
+            if 'license_number_cig' in kw and kw['license_number_cig']:
+                if kw['expiration_date_cig'] == '' and 'no_expiration_date_cig' not in kw:
+                    error['error_message'].append(
+                        '* Please enter Expiration date or select No Expiration Date in Cigarettes.')
+            if 'license_number_tc' in kw and kw['license_number_tc']:
+                if kw['expiration_date_tc'] == '' and 'no_expiration_date_tc' not in kw:
+                    error['error_message'].append(
+                        '* Please enter Expiration date or select No Expiration Date in Tobacco.')
+            if 'license_number_sale' in kw and kw['license_number_sale']:
+                if not kw['expiration_date_sale'] and 'no_expiration_date_sale' not in kw:
+                    error['error_message'].append(
+                        '* Please enter Expiration date or select No Expiration Date in Sales Tax.')
+
         vals = {
-            'license_filename_cig': kw.get('license_file_cig').filename,
             'license_number_cig': kw['license_number_cig'],
             'license_number_sale': kw['license_number_sale'],
             'license_number_tc': kw['license_number_tc'],
@@ -78,19 +94,83 @@ class Portal(Controller):
             'expiration_date_cig': kw['expiration_date_cig'],
             'expiration_date_sale': kw['expiration_date_sale'],
             'expiration_date_tc': kw['expiration_date_tc'],
+            'no_expiration_date_tc': True if 'no_expiration_date_tc' in kw else False,
+            'no_expiration_date_cig': True if 'no_expiration_date_cig' in kw else False,
+            'no_expiration_date_sale': True if 'no_expiration_date_sale' in kw else False,
         }
-        license_file_cig = kw.get('license_file_cig').read()
-        if license_file_cig:
-            vals.update(
-                {'license_file_cig': base64.b64encode(license_file_cig)})
-        partner.write(vals)
 
-        return request.redirect("/")
+        if kw.get('license_file_cig'):
+            license_file_cig = kw.get('license_file_cig').read()
+            if license_file_cig:
+                attachment_value = {
+                    'name': kw.get('license_file_cig').filename,
+                    'res_name': kw.get('license_file_cig').filename,
+                    'res_model': 'res.partner',
+                    'res_id': partner.id,
+                    'datas': base64.b64encode(license_file_cig),
+                    'datas_fname': kw.get('license_file_cig').filename,
+                }
+                new_attachment = request.env['ir.attachment'].create(attachment_value)
+
+                vals.update({'license_filename_cig': kw.get('license_file_cig').filename,
+                             'license_file_attachment_cig': new_attachment.id,
+                             })
+
+        if kw.get('license_file_tc'):
+            license_file_cig = kw.get('license_file_tc').read()
+            if license_file_cig:
+                if license_file_cig:
+                    attachment_value = {
+                        'name': kw.get('license_file_tc').filename,
+                        'res_name': kw.get('license_file_tc').filename,
+                        'res_model': 'res.partner',
+                        'res_id': partner.id,
+                        'datas': base64.b64encode(license_file_cig),
+                        'datas_fname': kw.get('license_file_tc').filename,
+                    }
+                    new_attachment = request.env['ir.attachment'].create(attachment_value)
+
+                vals.update({'license_filename_tc': kw.get('license_file_tc').filename,
+                             'license_file_attachment_tc': new_attachment.id
+                             })
+
+        if kw.get('license_file_sale'):
+            license_file_cig = kw.get('license_file_sale').read()
+            if license_file_cig:
+                attachment_value = {
+                    'name': kw.get('license_file_sale').filename,
+                    'res_name': kw.get('license_file_sale').filename,
+                    'res_model': 'res.partner',
+                    'res_id': partner.id,
+                    'datas': base64.b64encode(license_file_cig),
+                    'datas_fname': kw.get('license_file_sale').filename,
+                }
+                new_attachment = request.env['ir.attachment'].create(attachment_value)
+
+                vals.update({'license_filename_sale': kw.get('license_file_sale').filename,
+                             'license_file_attachment_sale': new_attachment.id,
+                             })
+
+        partner.sudo().write(vals)
+        if len(error['error_message']):
+            values = {
+                'partner': partner,
+                'submitted': 0,
+                'error': error
+            }
+            return request.render("mclane_customization.license_permits_temp", values)
+        else:
+            return request.redirect('/license-permits')
 
     @route(['/license-permits'], type='http', auth="user", website=True)
     def home(self):
         partner = request.env.user.partner_id
+        error = {'error_message': []}
+
         values = {
-            'partner': partner
+            'partner': partner,
+            'submitted': 0,
+            'error': error
         }
         return request.render("mclane_customization.license_permits_temp", values)
+
