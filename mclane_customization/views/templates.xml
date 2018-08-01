@@ -3,6 +3,7 @@
     <template id="assets_frontend" inherit_id="website.assets_frontend" name="Shop">
         <xpath expr="." position="inside">
             <script type="text/javascript" src="/mclane_customization/static/src/js/website_sale.js"/>
+            <link rel="stylesheet" href="/mclane_customization/static/src/css/website_sale.css" />
         </xpath>
     </template>
 
@@ -15,6 +16,9 @@
     <template id="layout_extend" name="Main layout" inherit_id="website.layout">
         <xpath expr="//header" position="attributes">
             <attribute name="t-if">request.session.uid</attribute>
+        </xpath>
+        <xpath expr="//header//div[hasclass('navbar-static-top')]" position="attributes">
+            <attribute name="class">navbar navbar-default navbar-static-top navbar-fixed-top</attribute>
         </xpath>
     </template>
 
