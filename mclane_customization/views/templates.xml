@@ -3,6 +3,7 @@
     <template id="assets_frontend" inherit_id="website.assets_frontend" name="Shop">
         <xpath expr="." position="inside">
             <script type="text/javascript" src="/mclane_customization/static/src/js/website_sale.js"/>
+            <link rel="stylesheet" href="/mclane_customization/static/src/css/website_sale.css" />
         </xpath>
     </template>
 
@@ -15,6 +16,9 @@
     <template id="layout_extend" name="Main layout" inherit_id="website.layout">
         <xpath expr="//header" position="attributes">
             <attribute name="t-if">request.session.uid</attribute>
+        </xpath>
+        <xpath expr="//header//div[hasclass('navbar-static-top')]" position="attributes">
+            <attribute name="class">navbar navbar-default navbar-static-top navbar-fixed-top</attribute>
         </xpath>
     </template>
 
@@ -78,14 +82,7 @@
                                         </a>
                                     </t>
                                 </div>
-                                <div class="form-group col-lg-10">
-                                    <div class="o_checkbox">
-                                        <label class="control-label" for="csr_review_cig">CSR Reviewed</label>
-                                        <input style="margin-left: 15px;" type="checkbox" id="checkbox" value="True"
-                                               name="csr_review_cig"
-                                               t-att-checked="'checked' if partner.csr_review_cig else None"/>
-                                    </div>
-                                </div>
+                                
                             </div>
 
                             <div class="row">
@@ -128,12 +125,7 @@
                                         </a>
                                     </t>
                                 </div>
-                                <div class="form-group col-lg-10">
-                                    <div class="o_checkbox">
-                                        <label class="control-label" for="csr_review_sale">CSR Reviewed</label>
-                                        <input style="margin-left: 15px;" type="checkbox" id="checkbox" value="True" name="csr_review_sale" t-att-checked="'checked' if partner.csr_review_sale else None"/>
-                                    </div>
-                                </div>
+                                
                             </div>
                             <div class="row">
                                 <h2>Sales Tax</h2>
@@ -173,12 +165,7 @@
                                         </a>
                                     </t>
                                 </div>
-                                <div class="form-group col-lg-10">
-                                    <div class="o_checkbox">
-                                        <label class="control-label" for="csr_review_tc">CSR Reviewed</label>
-                                        <input style="margin-left: 15px;" type="checkbox" id="checkbox" value="True" name="csr_review_tc" t-att-checked="'checked' if partner.csr_review_tc else None"/>
-                                    </div>
-                                </div>
+                                
                                 <div class="clearfix" />
                                 <input type="hidden" name="redirect" t-att-value="redirect"/>
                             </div>

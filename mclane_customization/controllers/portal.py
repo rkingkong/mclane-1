@@ -71,15 +71,15 @@ class Portal(Controller):
         error = {'error_message': []}
 
         if 'submitted' in kw:
-            if 'license_number_cig' in kw:
+            if 'license_number_cig' in kw and kw['license_number_cig']:
                 if kw['expiration_date_cig'] == '' and 'no_expiration_date_cig' not in kw:
                     error['error_message'].append(
                         '* Please enter Expiration date or select No Expiration Date in Cigarettes.')
-            if 'license_number_tc' in kw:
+            if 'license_number_tc' in kw and kw['license_number_tc']:
                 if kw['expiration_date_tc'] == '' and 'no_expiration_date_tc' not in kw:
                     error['error_message'].append(
                         '* Please enter Expiration date or select No Expiration Date in Tobacco.')
-            if 'license_number_sale' in kw:
+            if 'license_number_sale' in kw and kw['license_number_sale']:
                 if not kw['expiration_date_sale'] and 'no_expiration_date_sale' not in kw:
                     error['error_message'].append(
                         '* Please enter Expiration date or select No Expiration Date in Sales Tax.')
@@ -173,3 +173,4 @@ class Portal(Controller):
             'error': error
         }
         return request.render("mclane_customization.license_permits_temp", values)
+

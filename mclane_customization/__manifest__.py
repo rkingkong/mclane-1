@@ -5,7 +5,7 @@
     'description': """Mclane Customization""",
     'author': "Mclane",
     'category': 'Base',
-    'version': '11.0.2.1',
+    'version': '11.0.2.3',
     'depends': ['contacts', 'website','portal'],
     'data': [
         'views/res_partner_view.xml',
