@@ -10,9 +10,11 @@
         'product',
         'base',
         'sale',
-        'purchase'
+        'purchase',
+        'mclane_customization'
     ],
     'data': [
         'views/product_view_msrp.xml',
+        'data/ir_cron.xml',
     ],
 }
