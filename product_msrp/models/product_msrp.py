@@ -1,4 +1,6 @@
 from odoo import fields,api,models
+from odoo.tools.translate import _
+from odoo.exceptions import ValidationError
 
 class product_product(models.Model):
     _inherit = 'product.product'
@@ -29,6 +31,8 @@ class product_template(models.Model):
 class res_partner(models.Model):
     _inherit = 'res.partner'
 
+    licenses_ids = fields.One2many(comodel_name='res.partner.flexible.cat',inverse_name='partner_id',string='Licenses')
+
     # Cron Job Function
     @api.multi
     def check_expired_license(self):
@@ -45,3 +49,46 @@ class res_partner(models.Model):
                if res.expiration_date_tc and res.expiration_date_tc <= today_date:
                    res.csr_review_tc = False
 
+
+
+class res_partner_flexible_cat(models.Model):
+    _name = 'res.partner.flexible.cat'
+
+    product_category = fields.Many2one(comodel_name='product.category',string='Product Category',required=True)
+    license_number = fields.Char('License Number',required=True)
+    license_file = fields.Binary('License File')
+    license_filename = fields.Char("License Filename")
+    license_file_attachment = fields.Many2one('ir.attachment')
+    start_date = fields.Date('Start Date')
+    expiration_date = fields.Date('Expiration Date')
+    no_expiration_date = fields.Boolean('No Expiration Date')
+    csr_review= fields.Boolean('CSR Reviewed')
+    partner_id = fields.Many2one(comodel_name='res.partner',string='Customer')
+
+    @api.constrains('start_date', 'expiration_date')
+    def check_dates(self):
+        if self.start_date >= self.expiration_date and self.no_expiration_date == False:
+            raise ValidationError(_('Error!  start-date must be lower then leave expiration-date.'))
+
+
+
+    @api.onchange('no_expiration_date','expiration_date','start_date')
+    def onchange_no_expiration_date(self):
+        if self.no_expiration_date == True:
+            self.expiration_date = False
+
+        if self.expiration_date and self.start_date:
+            if self.start_date >= self.expiration_date and self.no_expiration_date == False:
+                raise ValidationError(_('Error!  start-date must be lower then leave expiration-date.'))
+
+
+    # Cron Job Function For Licenses Ids
+    @api.multi
+    def check_expired_license_ids(self):
+        today_date = fields.Date.context_today(self)
+        expired_licenses = self.search([('expiration_date', '<=', today_date)])
+        print(expired_licenses)
+        if expired_licenses:
+            for res in expired_licenses:
+                if res.expiration_date and res.expiration_date <= today_date:
+                    res.csr_review = False

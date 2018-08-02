@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="partner_view_licenses_inherit" model="ir.ui.view">
+        <field name="name">partner.view.licenses.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='sales_purchases']" position='after'>
+                <page name="licenses" string="Licenses">
+                    <field name="licenses_ids">
+                        <form>
+                            <group>
+                                <group string="License Info">
+                                    <field name="product_category"/>
+                                    <field name="license_number"/>
+                                    <field name="start_date"/>
+                                    <field name="expiration_date"/>
+                                    <field name="no_expiration_date"/>
+                                </group>
+                                <group string="License Review">
+                                    <field name="license_filename" invisible="1"/>
+                                    <field name="license_file" widget="FieldBinary" filename="license_filename_cig"/>
+                                    <field name="csr_review"/>
+                                </group>
+                            </group>
+
+
+                        </form>
+                        <tree>
+                            <field name="product_category"/>
+                            <field name="license_number"/>
+                            <field name="start_date"/>
+                            <field name="expiration_date"/>
+                            <field name="no_expiration_date"/>
+                            <field name="license_filename" invisible="1"/>
+                            <field name="license_file" widget="FieldBinary" filename="license_filename_cig"/>
+                            <field name="csr_review"/>
+                        </tree>
+
+                    </field>
+                </page>
+
+
+            </xpath>
+        </field>
+    </record>
+</odoo>
