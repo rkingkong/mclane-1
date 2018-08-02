@@ -8,18 +8,6 @@
         </xpath>
     </template>
 
-    <template id="total_extend" name="Main layout" inherit_id="website_sale.total">
-        <xpath expr="//div[@id='cart_total']/div[@id='order_total']" position="after">
-            <div class="row" id="order_total_margin_msrp">
-                <hr class="mt8 mb0"/>
-                <span class="col-xs-6 text-right h5 mt0" style="color:red">Expected Total Margin:</span>
-                <span class="col-xs-6 text-right-not-xs text-left-xs h4 mt0" style="white-space: nowrap;">
-                    <span t-field="website_sale_order.margin_msrp_total" style="white-space: nowrap;" t-options="{'widget': 'monetary','from_currency': website_sale_order.pricelist_id.currency_id,'display_currency': website.currency_id}" />
-                </span>
-            </div>
-        </xpath>
-    </template>
-
     <template id="footer_default_new" inherit_id="website.layout" customize_show="True" name="Automatic Footer">
         <xpath expr="//footer" position="attributes" >
             <attribute name="t-if">request.session.uid</attribute>

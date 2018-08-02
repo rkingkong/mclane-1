@@ -6,7 +6,7 @@
     'author': "Mclane",
     'category': 'Base',
     'version': '11.0.2.3',
-    'depends': ['contacts', 'website','portal','website_sale'],
+    'depends': ['contacts', 'website','portal','website_sale', 'product_msrp'],
     'data': [
         'views/res_partner_view.xml',
         'views/templates.xml'
