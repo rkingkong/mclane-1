@@ -17,8 +17,6 @@ class SaleOrderLine(models.Model):
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    margin_msrp_total = fields.Integer(compute='_compute_margin_msrp_total', string='Expected Margin MSRP')
-
     @api.multi
     def _compute_margin_msrp_total(self):
         """
@@ -32,3 +30,5 @@ class SaleOrder(models.Model):
             order.update({
                 'margin_msrp_total': order.pricelist_id.currency_id.round(amount_margin_msrp)
             })
+
+    margin_msrp_total = fields.Integer(compute='_compute_margin_msrp_total', string='Expected Margin MSRP')
