@@ -18,7 +18,7 @@
         <xpath expr="//header" position="attributes">
             <attribute name="t-if">request.session.uid</attribute>
         </xpath>
-        <xpath expr="//div[contains(@class, 'navbar navbar-default navbar-static-top')]" position="attributes">
+        <xpath expr="//div[hasclass('navbar-static-top')]" position="attributes">
             <attribute name="class">navbar navbar-default navbar-custom navbar-fixed-top</attribute>
             <attribute name="id">mainNav</attribute>
         </xpath>
