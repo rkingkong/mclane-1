@@ -4,6 +4,27 @@ odoo.define('mclance_customization.website_sale', function (require) {
     var core = require('web.core');
     $(document).ready(function () {
 
+	$('a.page-scroll').bind('click', function(event) {
+		var $anchor = $(this);
+		$('html, body').stop().animate({
+		    scrollTop: ($($anchor.attr('href')).offset().top - 50)
+		}, 1250, 'easeInOutExpo');
+		event.preventDefault();
+	    });
+
+	    // Highlight the top nav as scrolling occurs
+	    $('body').scrollspy({
+		target: '.navbar-fixed-top',
+		offset: 51
+	    });
+
+	    // Offset for Main Navigation
+	    $('#mainNav').affix({
+		offset: {
+		    top: 100
+		}
+	    });
+
         $("input[name='expiration_date_cig']").change(function() {
             $("input[name='no_expiration_date_cig']").attr('checked', false);
         });

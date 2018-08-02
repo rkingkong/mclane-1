@@ -1,6 +1,28 @@
 .navbar-fixed-top {
    top: auto;
 }
-#wrap {
-   padding-top: 50px;
+#oe_main_menu_navbar {
+  z-index: 10000;
+}
+body.editor_enable .navbar-custom {
+  z-index: -1;
+}
+
+@media (min-width: 768px) {
+  .navbar-custom {
+    padding: 4px 0;
+    -webkit-transition: padding 0.3s;
+    -moz-transition: padding 0.3s;
+    transition: padding 0.3s;
+  }
+  .navbar-custom .navbar-brand {
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+}
+@media (min-width: 768px) {
+  .navbar-custom.affix {
+    padding: 4px 0;
+  }
 }
