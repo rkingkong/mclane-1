@@ -4,6 +4,8 @@
         <xpath expr="." position="inside">
             <script type="text/javascript" src="/mclane_customization/static/src/js/website_sale.js"/>
             <link rel="stylesheet" href="/mclane_customization/static/src/css/website_sale.css" />
+            <script type="text/javascript" src="/mclane_customization/static/src/js/jquery.easing.js"></script>
+            <!--<link rel="stylesheet" href="/mclane_customization/static/src/css/nav.less"></link>-->
         </xpath>
     </template>
 
@@ -17,8 +19,12 @@
         <xpath expr="//header" position="attributes">
             <attribute name="t-if">request.session.uid</attribute>
         </xpath>
-        <xpath expr="//header//div[hasclass('navbar-static-top')]" position="attributes">
-            <attribute name="class">navbar navbar-default navbar-static-top navbar-fixed-top</attribute>
+        <xpath expr="//div[contains(@class, 'navbar navbar-default navbar-static-top')]" position="attributes">
+            <attribute name="class">navbar navbar-default navbar-custom navbar-fixed-top</attribute>
+            <attribute name="id">mainNav</attribute>
+        </xpath>
+        <xpath expr="//div[@id='mainNav']" position="after">
+            <div style="height:70px;"></div>
         </xpath>
     </template>
 
