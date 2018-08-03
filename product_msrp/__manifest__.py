@@ -16,7 +16,7 @@
     'data': [
         'views/product_view_msrp.xml',
         'views/res_partner_view.xml',
+        'security/ir.model.access.csv',
         'data/ir_cron.xml',
-	 'security/ir.model.access.csv'
     ],
 }

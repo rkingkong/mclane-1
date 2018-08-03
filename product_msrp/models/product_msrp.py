@@ -54,7 +54,7 @@ class res_partner(models.Model):
 class res_partner_flexible_cat(models.Model):
     _name = 'res.partner.flexible.cat'
 
-    product_category = fields.Many2one(comodel_name='product.category',string='Product Category',required=True)
+    product_category = fields.Many2one(comodel_name='product.category',string='Product Category')
     license_number = fields.Char('License Number',required=True)
     license_file = fields.Binary('License File')
     license_filename = fields.Char("License Filename")
