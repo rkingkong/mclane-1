@@ -2,7 +2,14 @@ odoo.define('mclance_customization.website_sale', function (require) {
     "use strict";
 
     var core = require('web.core');
+
     $(document).ready(function () {
+    $('#product_detail .quantity').change(function(){
+        var $input = $(this);
+        var qty = $(this).val()
+        var margin_val = parseFloat($('#oe_margin_hide').text())
+        $('#oe_margin > .oe_currency_value').text(parseFloat(margin_val*parseInt(qty)).toFixed(2))
+    })
 
 	$('a.page-scroll').bind('click', function(event) {
 		var $anchor = $(this);
@@ -45,6 +52,9 @@ odoo.define('mclance_customization.website_sale', function (require) {
         $("input[name='no_expiration_date_sale']").change(function() {
             $("input[name='expiration_date_sale']").val('')
         });
+
+
+
     });
 
 })
