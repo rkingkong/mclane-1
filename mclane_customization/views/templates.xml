@@ -27,7 +27,7 @@
             <xpath expr="//div[hasclass('modal-body')]//tr/td[hasclass('td-price')]" position="after">
                 <td class="text-center td-price" name="margin_msrp">
                   <span
-                    t-field="product.margin_msrp"
+                    t-field="product.product_tmpl_id.margin_msrp"
                     t-options='{
                       "widget": "monetary",
                       "from_currency": product.currency_id,
