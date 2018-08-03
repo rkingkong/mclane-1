@@ -54,8 +54,9 @@
                 <label>
                     Margin
                 </label>
-              <span class="oe_price" style="white-space: nowrap;" t-esc="product.margin_msrp" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
-          </h4>
+                <span id="oe_margin" class="oe_price" style="white-space: nowrap;" t-esc="product.margin_msrp" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                <span id="oe_margin_hide" class="oe_price" style="white-space: nowrap;display:none;" t-esc="product.margin_msrp"/>
+            </h4>
         </xpath>
     </template>
 

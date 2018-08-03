@@ -6,7 +6,7 @@ from odoo import api, models, fields
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    @api.multi
+    @api.depends('product_uom_qty')
     def _compute_margin_msrp(self):
         for order_line in self:
             amount_margin_msrp = 0.0  # type: float
