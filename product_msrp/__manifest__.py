@@ -17,5 +17,6 @@
         'views/product_view_msrp.xml',
         'views/res_partner_view.xml',
         'data/ir_cron.xml',
+	 'security/ir.model.access.csv'
     ],
 }
