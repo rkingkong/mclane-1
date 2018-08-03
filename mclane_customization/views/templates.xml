@@ -20,29 +20,29 @@
         </xpath>
     </template>
 
-    <!--<template id="add_to_cart_extened" inherit_id="website_sale_options.modal">-->
-            <!--<xpath expr="//div[hasclass('modal-body')]//tr/th[hasclass('td-price')]" position="after">-->
-                <!--<th class="text-center td-price">Margin</th>-->
-            <!--</xpath>-->
-            <!--<xpath expr="//div[hasclass('modal-body')]//tr/td[hasclass('td-price')]" position="after">-->
-                <!--<td class="text-center td-price" name="margin_msrp">-->
-                  <!--<span-->
-                    <!--t-field="product.margin_msrp"-->
-                    <!--t-options='{-->
-                      <!--"widget": "monetary",-->
-                      <!--"from_currency": product.currency_id,-->
-                      <!--"display_currency": website.currency_id-->
-                   <!--}'/>-->
-                <!--</td>-->
-            <!--</xpath>-->
-    <!--</template>-->
+    <template id="add_to_cart_extened" inherit_id="website_sale_options.modal">
+            <xpath expr="//div[hasclass('modal-body')]//tr/th[hasclass('td-price')]" position="after">
+                <th class="text-center td-price">Margin</th>
+            </xpath>
+            <xpath expr="//div[hasclass('modal-body')]//tr/td[hasclass('td-price')]" position="after">
+                <td class="text-center td-price" name="margin_msrp">
+                  <span
+                    t-field="product.margin_msrp"
+                    t-options='{
+                      "widget": "monetary",
+                      "from_currency": product.currency_id,
+                      "display_currency": website.currency_id
+                   }'/>
+                </td>
+            </xpath>
+    </template>
 
     <template id="cart_lines_extened" name="Main layout" inherit_id="website_sale.cart_lines">
         <xpath expr="//table[@id='cart_products']/thead/tr" position="inside">
-            <th>Margin</th>
+            <th class="text-center td-price">Margin</th>
         </xpath>
         <xpath expr="//table[@id='cart_products']/tbody//td[hasclass('td-price')]" position="after">
-            <td>
+            <td class="text-center td-price" name="price">
                 <span t-field="line.margin_msrp" style="white-space: nowrap;" t-options="{'widget': 'monetary', 'from_currency': website_sale_order.pricelist_id.currency_id, 'display_currency': website.currency_id}" />
             </td>
         </xpath>
@@ -240,5 +240,4 @@
 
     </template>
 </odoo>
-
 
