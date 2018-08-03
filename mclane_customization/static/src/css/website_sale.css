@@ -7,7 +7,11 @@
 body.editor_enable .navbar-custom {
   z-index: -1;
 }
-
+#add_to_cart {
+    padding: 15px;
+    min-width: 150px;
+    color:white;
+  }
 @media (min-width: 768px) {
   .navbar-custom {
     padding: 4px 0;
