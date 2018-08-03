@@ -12,13 +12,54 @@
         <xpath expr="//div[@id='order_total']" position="after">
             <div class="row" id="order_total_margin_msrp">
                 <hr class="mt8 mb0"/>
-                <span class="col-xs-6 text-right h4 mt0" style="color:red">Expected Total Margin:</span>
+                <span class="col-xs-6 text-right h4 mt0" style="color:red;font-size: 16px;">Expected Total Margin:</span>
                 <span class="col-xs-6 text-right-not-xs text-left-xs h4 mt0" style="white-space: nowrap;">
                     <span t-field="website_sale_order.margin_msrp_total" style="white-space: nowrap;" t-options="{'widget': 'monetary','from_currency': website_sale_order.pricelist_id.currency_id,'display_currency': website.currency_id}" />
                 </span>
             </div>
         </xpath>
     </template>
+
+    <template id="add_to_cart_extened" inherit_id="website_sale_options.modal">
+            <xpath expr="//div[hasclass('modal-body')]//tr/th[hasclass('td-price')]" position="after">
+                <th class="text-center td-price">Margin</th>
+            </xpath>
+            <xpath expr="//div[hasclass('modal-body')]//tr/td[hasclass('td-price')]" position="after">
+                <td class="text-center td-price" name="margin_msrp">
+                  <span
+                    t-field="product.margin_msrp"
+                    t-options='{
+                      "widget": "monetary",
+                      "from_currency": product.currency_id,
+                      "display_currency": website.currency_id
+                   }'/>
+                </td>
+            </xpath>
+    </template>
+
+    <template id="cart_lines_extened" name="Main layout" inherit_id="website_sale.cart_lines">
+        <xpath expr="//table[@id='cart_products']/thead/tr" position="inside">
+            <th class="text-center td-price">Margin</th>
+        </xpath>
+        <xpath expr="//table[@id='cart_products']/tbody//td[hasclass('td-price')]" position="after">
+            <td class="text-center td-price" name="price">
+                <span t-field="line.margin_msrp" style="white-space: nowrap;" t-options="{'widget': 'monetary', 'from_currency': website_sale_order.pricelist_id.currency_id, 'display_currency': website.currency_id}" />
+            </td>
+        </xpath>
+    </template>
+
+    <template id="product_price_extened" name="Main Product Extened"  inherit_id="website_sale.product_price">
+        <xpath expr="//div[hasclass('product_price')]/h4" position="after">
+            <h4 class="oe_price_h4 css_editable_mode_hidden">
+                <label>
+                    Margin
+                </label>
+              <span class="oe_price" style="white-space: nowrap;" t-esc="product.margin_msrp" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+          </h4>
+        </xpath>
+    </template>
+
+
 
     <template id="footer_default_new" inherit_id="website.layout" customize_show="True" name="Automatic Footer">
         <xpath expr="//footer" position="attributes" >
