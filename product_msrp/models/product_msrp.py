@@ -71,7 +71,6 @@ class res_partner_flexible_cat(models.Model):
             raise ValidationError(_('Error!  start-date must be lower then leave expiration-date.'))
 
 
-
     @api.onchange('no_expiration_date','expiration_date','start_date')
     def onchange_no_expiration_date(self):
         if self.no_expiration_date == True:
