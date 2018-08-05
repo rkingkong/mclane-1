@@ -67,7 +67,7 @@ class res_partner_flexible_cat(models.Model):
 
     @api.constrains('start_date', 'expiration_date')
     def check_dates(self):
-        if self.start_date >= self.expiration_date and self.no_expiration_date == False:
+        if self.no_expiration_date == False and self.start_date >= self.expiration_date :
             raise ValidationError(_('Error!  start-date must be lower then leave expiration-date.'))
 
 
