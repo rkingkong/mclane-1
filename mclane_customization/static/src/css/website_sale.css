@@ -1,13 +1,20 @@
 .navbar-fixed-top {
    top: auto;
 }
+.o_ace_view_editor {
+   margin-top: 60px;
+}
 #oe_main_menu_navbar {
   z-index: 10000;
 }
 body.editor_enable .navbar-custom {
   z-index: -1;
 }
-
+#add_to_cart {
+    padding: 15px;
+    min-width: 150px;
+    color:white;
+  }
 @media (min-width: 768px) {
   .navbar-custom {
     padding: 4px 0;
