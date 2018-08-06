@@ -86,9 +86,9 @@
         </xpath>
     </template>
 
-    <template id="layout_footer_copyright_module" inherit_id="website.layout_footer_copyright" name="Footer Copyright">
-        <xpath expr="//div" position="attributes">
-            <attribute name="t-if">request.session.uid</attribute>
+    <template id="custom_layout_footer_copyright" inherit_id="website.layout_footer_copyright" name="Custom Footer Copyright">
+        <xpath expr="//div[hasclass('container')]" position="attributes">
+              <attribute name="t-if">request.session.uid</attribute>
         </xpath>
     </template>
 
