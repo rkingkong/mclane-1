@@ -63,23 +63,39 @@
 
         </xpath>
         <xpath expr="//div[hasclass('product_price')]/h4" position="after">
-            <span class="oe_price_h5 css_editable_mode_hidden" style="font-size: 18px;">
+            <h5 class="oe_price_h5 css_editable_mode_hidden" >
                 <label>
-                    Margin
+                    MSRP
+                </label>
+                <span id="oe_margin" class="oe_price" style="white-space: nowrap;" t-esc="product.msrp_cost" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                <span id="oe_margin_hide" class="oe_price" style="white-space: nowrap;display:none;" t-esc="product.msrp_cost"/>
+            </h5>
+            <h5 class="oe_price_h5 css_editable_mode_hidden" >
+                <label>
+                    Your Margin
                 </label>
                 <span id="oe_margin" class="oe_price" style="white-space: nowrap;" t-esc="product.margin_msrp" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
                 <span id="oe_margin_hide" class="oe_price" style="white-space: nowrap;display:none;" t-esc="product.margin_msrp"/>
-            </span>
+            </h5>
         </xpath>
     </template>
 
-    <template id="footer_default_new" inherit_id="website.layout" customize_show="True" name="Automatic Footer">
-        <xpath expr="//footer" position="attributes" >
+    <template id="footer_custom_extend" inherit_id="website.footer_custom" customize_show="True" name="Automatic Footer">
+        <xpath expr="//div[@id='footer']" position="attributes">
             <attribute name="t-if">request.session.uid</attribute>
         </xpath>
     </template>
 
+    <template id="custom_layout_footer_copyright" inherit_id="website.layout_footer_copyright" name="Custom Footer Copyright">
+        <xpath expr="//div[hasclass('container')]" position="attributes">
+              <attribute name="t-if">request.session.uid</attribute>
+        </xpath>
+    </template>
+
     <template id="layout_extend" name="Main layout" inherit_id="website.layout">
+        <xpath expr="//footer" position="attributes" >
+            <attribute name="t-if">request.session.uid</attribute>
+        </xpath>
         <xpath expr="//header" position="attributes">
             <attribute name="t-if">request.session.uid</attribute>
         </xpath>

@@ -1,6 +1,9 @@
 .navbar-fixed-top {
    top: auto;
 }
+.o_ace_view_editor {
+   margin-top: 60px;
+}
 #oe_main_menu_navbar {
   z-index: 10000;
 }
