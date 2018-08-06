@@ -80,13 +80,6 @@
         </xpath>
     </template>
 
-
-    <template id="footer_layout_footer_copyright" inherit_id="website.layout_footer_copyright" customize_show="True" name="Automatic Footer">
-        <xpath expr="//div" position="attributes">
-            <attribute name="t-if">request.session.uid</attribute>
-        </xpath>
-    </template>
-
     <template id="footer_custom_extend" inherit_id="website.footer_custom" customize_show="True" name="Automatic Footer">
         <xpath expr="//div[@id='footer']" position="attributes">
             <attribute name="t-if">request.session.uid</attribute>
