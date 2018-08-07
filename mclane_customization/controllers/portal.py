@@ -1,18 +1,17 @@
 # -*- coding: utf-8 -*-
-from odoo.http import Controller, request, route
-from odoo.addons.portal.controllers.portal import CustomerPortal
-from odoo.addons.web.controllers.main import Home
 import base64
-import werkzeug
-import werkzeug.utils
+from odoo import http
+from odoo.addons.portal.controllers.portal import CustomerPortal
+from odoo.addons.website.controllers.main import Website
+from odoo.http import Controller, request, route
 
 
-class Website(Home):
-    @route()
+class WebsiteExtendCustom(Website):
+    @http.route('/', type="http", auth="public", website=True)
     def index(self, **kw):
-        if not request.session.uid:
-            return werkzeug.utils.redirect('/web/login')
-        return super(Website, self).index(**kw)
+        if request.session.uid is None:
+            return request.redirect('/web/login')
+        return super(WebsiteExtendCustom, self).index(**kw)
 
 
 class WebsiteSalePortal(CustomerPortal):
