@@ -11,7 +11,8 @@
         'base',
         'sale',
         'purchase',
-        'mclane_customization'
+        'mclane_customization',
+        'website_sale'
     ],
     'data': [
         'views/product_view_msrp.xml',
