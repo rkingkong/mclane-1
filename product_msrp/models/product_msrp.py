@@ -65,10 +65,10 @@ class res_partner_flexible_cat(models.Model):
     csr_review= fields.Boolean('CSR Reviewed')
     partner_id = fields.Many2one(comodel_name='res.partner',string='Customer')
 
-    @api.constrains('start_date', 'expiration_date')
-    def check_dates(self):
-        if self.no_expiration_date == False and self.start_date >= self.expiration_date :
-            raise ValidationError(_('Error!  start-date must be lower then leave expiration-date.'))
+    # @api.constrains('start_date', 'expiration_date')
+    # def check_dates(self):
+    #     if self.no_expiration_date == False and self.start_date >= self.expiration_date :
+    #         raise ValidationError(_('Error!  start-date must be lower then leave expiration-date.'))
 
 
     @api.onchange('no_expiration_date','expiration_date','start_date')
