@@ -1,2 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_flexible_category,Access Flexible Category,model_res_partner_flexible_cat,base.group_user,1,1,1,1
+access_flexible_category_portal,Access Flexible Category Portal,model_res_partner_flexible_cat,base.group_portal,1,1,1,0
+access_website_category,Access Website Category,website_sale.model_product_public_category,base.group_portal,1,0,0,0
