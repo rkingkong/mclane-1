@@ -1,9 +1,18 @@
 # -*- coding: utf-8 -*-
-import base64
-from odoo import http
+from odoo.http import Controller, request, route
 from odoo.addons.portal.controllers.portal import CustomerPortal
 from odoo.addons.website.controllers.main import Website
-from odoo.http import Controller, request, route
+from odoo.addons.website_sale.controllers.main import WebsiteSale
+from odoo import http
+import base64
+
+
+class WebsiteSaleCustom(WebsiteSale):
+    @http.route('/shop', type="http", auth="public", website=True)
+    def shop(self, page=0, category=None, search='', ppg=False, **post):
+        if request.session.uid is None:
+            return request.redirect('/web/login')
+        return super(WebsiteSaleCustom, self).shop(page, category, search, ppg, **post)
 
 
 class WebsiteExtendCustom(Website):
