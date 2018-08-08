@@ -8,7 +8,12 @@ import base64
 
 
 class WebsiteSaleCustom(WebsiteSale):
-    @http.route('/shop', type="http", auth="public", website=True)
+    @http.route([
+        '/shop',
+        '/shop/page/<int:page>',
+        '/shop/category/<model("product.public.category"):category>',
+        '/shop/category/<model("product.public.category"):category>/page/<int:page>'
+    ], type='http', auth="public", website=True)
     def shop(self, page=0, category=None, search='', ppg=False, **post):
         if request.session.uid is None:
             return request.redirect('/web/login')
