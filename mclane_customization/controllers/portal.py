@@ -58,12 +58,24 @@ class WebsiteSaleCustom(WebsiteSale):
         if attrib_list:
             post['attrib'] = attrib_list
 
+        product_category = request.env['product.public.category']
+
+        cig = product_category.search([('name', 'ilike', 'Cigarettes')], limit=1).id
+
+        tc = product_category.search([('name', 'ilike', 'Tobacco')], limit=1).id
+
         partner = request.env.user.partner_id
+
         res_cat_flex = request.env['res.partner.flexible.cat']
-        Display_Products = res_cat_flex.search([('csr_review', '=', False), ('partner_id', '=', partner.id)])
-        categ_ids = []
-        for categ_id in Display_Products:
-            categ_ids.append(categ_id.product_category.id)
+
+        Display_Products = res_cat_flex.search([('partner_id', '=', partner.id), ('product_category', 'in', [cig, tc])])
+
+        categ_ids = [cig, tc]
+
+        if len(Display_Products):
+            for categ_id in Display_Products:
+                if categ_id.csr_review and categ_id.product_category.id in categ_ids:
+                    categ_ids.remove(categ_id.product_category.id)
 
         categs = request.env['product.public.category'].search([('parent_id', '=', False), ('id', 'not in', categ_ids)])
         Product = request.env['product.template']
@@ -234,7 +246,9 @@ class Portal(Controller):
             vals_tc.update({'product_category': tc.id})
 
         if kw.get('license_file_cig'):
+
             license_file_cig = kw.get('license_file_cig').read()
+
             if license_file_cig:
                 attachment_value = {
                     'name': kw.get('license_file_cig').filename,
@@ -246,44 +260,46 @@ class Portal(Controller):
                 }
                 new_attachment_cig = request.env['ir.attachment'].create(attachment_value)
 
-                vals_cig.update({'license_file': kw.get('license_file_cig').filename,
+                vals_cig.update({'license_file': base64.b64encode(license_file_cig),
+                                 'license_filename': kw.get('license_file_cig').filename,
                                  'license_file_attachment': new_attachment_cig.id,
                                  })
 
         if kw.get('license_file_tc'):
-            license_file_cig = kw.get('license_file_tc').read()
-            if license_file_cig:
-                if license_file_cig:
-                    attachment_value = {
-                        'name': kw.get('license_file_tc').filename,
-                        'res_name': kw.get('license_file_tc').filename,
-                        'res_model': 'res.partner',
-                        'res_id': partner.id,
-                        'datas': base64.b64encode(license_file_cig),
-                        'datas_fname': kw.get('license_file_tc').filename,
-                    }
-                    new_attachment = request.env['ir.attachment'].create(attachment_value)
+            license_file_tc = kw.get('license_file_tc').read()
+            if license_file_tc:
+                attachment_value = {
+                    'name': kw.get('license_file_tc').filename,
+                    'res_name': kw.get('license_file_tc').filename,
+                    'res_model': 'res.partner',
+                    'res_id': partner.id,
+                    'datas': base64.b64encode(license_file_tc),
+                    'datas_fname': kw.get('license_file_tc').filename,
+                }
+                new_attachment = request.env['ir.attachment'].create(attachment_value)
 
-                    vals_tc.update({'license_filename': kw.get('license_file_tc').filename,
-                                    'license_file_attachment': new_attachment.id,
-                                    })
-        #
-        # if kw.get('license_file_sale'):
-        #     license_file_cig = kw.get('license_file_sale').read()
-        #     if license_file_cig:
-        #         attachment_value = {
-        #             'name': kw.get('license_file_sale').filename,
-        #             'res_name': kw.get('license_file_sale').filename,
-        #             'res_model': 'res.partner',
-        #             'res_id': partner.id,
-        #             'datas': base64.b64encode(license_file_cig),
-        #             'datas_fname': kw.get('license_file_sale').filename,
-        #         }
-        #         new_attachment = request.env['ir.attachment'].create(attachment_value)
-        #
-        #         vals.update({'license_filename_sale': kw.get('license_file_sale').filename,
-        #                      'license_file_attachment_sale': new_attachment.id,
-        #                      })
+                vals_tc.update({'license_file': base64.b64encode(license_file_tc),
+                                'license_filename': kw.get('license_file_tc').filename,
+                                'license_file_attachment': new_attachment.id,
+                                })
+
+        if kw.get('license_file_sale'):
+            license_file_sale = kw.get('license_file_sale').read()
+            if license_file_sale:
+                attachment_value = {
+                    'name': kw.get('license_file_sale').filename,
+                    'res_name': kw.get('license_file_sale').filename,
+                    'res_model': 'res.partner',
+                    'res_id': partner.id,
+                    'datas': base64.b64encode(license_file_sale),
+                    'datas_fname': kw.get('license_file_sale').filename,
+                }
+                new_attachment = request.env['ir.attachment'].create(attachment_value)
+
+                vals_sale.update({'license_file': base64.b64encode(license_file_sale),
+                                  'license_filename': kw.get('license_file_sale').filename,
+                                  'license_file_attachment': new_attachment.id,
+                                  })
 
         if len(partner_cig) == 0:
             partner.sudo().write({'licenses_ids': [(0, 0, vals_cig)]})

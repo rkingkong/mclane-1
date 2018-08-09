@@ -19,7 +19,7 @@
                                 </group>
                                 <group string="License Review">
                                     <field name="license_filename" invisible="1"/>
-                                    <field name="license_file" widget="FieldBinary" filename="license_file"/>
+                                    <field name="license_file" widget="FieldBinary" filename="license_filename"/>
                                     <field name="csr_review"/>
                                 </group>
                             </group>
@@ -33,7 +33,7 @@
                             <field name="expiration_date"/>
                             <field name="no_expiration_date"/>
                             <field name="license_filename" invisible="1"/>
-                            <field name="license_file" widget="FieldBinary" filename="license_file"/>
+                            <field name="license_file" widget="FieldBinary" filename="license_filename"/>
                             <field name="csr_review"/>
                         </tree>
 
@@ -45,3 +45,4 @@
         </field>
     </record>
 </odoo>
+
