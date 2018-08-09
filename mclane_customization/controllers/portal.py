@@ -15,6 +15,7 @@ PPR = 4  # Products Per Row
 
 
 class WebsiteSaleCustom(WebsiteSale):
+
     @http.route([
         '/shop',
         '/shop/page/<int:page>',
@@ -205,15 +206,15 @@ class Portal(Controller):
                 error['error_message'].append(
                     '* Please enter Expiration date or select No Expiration Date in Sales Tax.')
 
-        cig = product_category.search([('name', 'ilike', 'Cigarettes')], limit=1)
+        cig = product_category.sudo().search([('name', 'ilike', 'Cigarettes')], limit=1)
 
-        tc = product_category.search([('name', 'ilike', 'Tobacco')], limit=1)
+        tc = product_category.sudo().search([('name', 'ilike', 'Tobacco')], limit=1)
 
-        partner_cig = res_cat_flex.search([('product_category', '=', cig.id), ('partner_id', '=', partner.id)], limit=1)
+        partner_cig = res_cat_flex.sudo().search([('product_category', '=', cig.id), ('partner_id', '=', partner.id)], limit=1)
 
-        partner_tc = res_cat_flex.search([('product_category', '=', tc.id), ('partner_id', '=', partner.id)], limit=1)
+        partner_tc = res_cat_flex.sudo().search([('product_category', '=', tc.id), ('partner_id', '=', partner.id)], limit=1)
 
-        partner_sale = res_cat_flex.search([('product_category', '=', False), ('partner_id', '=', partner.id)], limit=1)
+        partner_sale = res_cat_flex.sudo().search([('product_category', '=', False), ('partner_id', '=', partner.id)], limit=1)
 
         vals_cig = {
             'partner_id': partner.id,
@@ -258,7 +259,7 @@ class Portal(Controller):
                     'datas': base64.b64encode(license_file_cig),
                     'datas_fname': kw.get('license_file_cig').filename,
                 }
-                new_attachment_cig = request.env['ir.attachment'].create(attachment_value)
+                new_attachment_cig = request.env['ir.attachment'].sudo().create(attachment_value)
 
                 vals_cig.update({'license_file': base64.b64encode(license_file_cig),
                                  'license_filename': kw.get('license_file_cig').filename,
@@ -276,7 +277,7 @@ class Portal(Controller):
                     'datas': base64.b64encode(license_file_tc),
                     'datas_fname': kw.get('license_file_tc').filename,
                 }
-                new_attachment = request.env['ir.attachment'].create(attachment_value)
+                new_attachment = request.env['ir.attachment'].sudo().create(attachment_value)
 
                 vals_tc.update({'license_file': base64.b64encode(license_file_tc),
                                 'license_filename': kw.get('license_file_tc').filename,
