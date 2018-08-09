@@ -58,12 +58,24 @@ class WebsiteSaleCustom(WebsiteSale):
         if attrib_list:
             post['attrib'] = attrib_list
 
+        product_category = request.env['product.public.category']
+
+        cig = product_category.search([('name', 'ilike', 'Cigarettes')], limit=1).id
+
+        tc = product_category.search([('name', 'ilike', 'Tobacco')], limit=1).id
+
         partner = request.env.user.partner_id
+
         res_cat_flex = request.env['res.partner.flexible.cat']
-        Display_Products = res_cat_flex.search([('csr_review', '=', False), ('partner_id', '=', partner.id)])
-        categ_ids = []
-        for categ_id in Display_Products:
-            categ_ids.append(categ_id.product_category.id)
+
+        Display_Products = res_cat_flex.search([('partner_id', '=', partner.id), ('product_category', 'in', [cig, tc])])
+
+        categ_ids = [cig, tc]
+
+        if len(Display_Products):
+            for categ_id in Display_Products:
+                if categ_id.csr_review and categ_id.product_category.id in categ_ids:
+                    categ_ids.remove(categ_id.product_category.id)
 
         categs = request.env['product.public.category'].search([('parent_id', '=', False), ('id', 'not in', categ_ids)])
         Product = request.env['product.template']
