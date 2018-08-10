@@ -80,6 +80,15 @@
         </xpath>
     </template>
 
+
+    <template id="website_sale_learn_more" inherit_id="website_sale.product" priority="4">
+        <xpath expr="//div[hasclass('js_product')]" position="after">
+            <a id="learn_more" class="btn btn-primary btn-lg mt6" href="#">Learn More</a>
+            <input id="product_name_attachemnt" type="hidden" name="product_id" t-att-value="product.id"/>
+
+        </xpath>
+    </template>
+
     <template id="footer_custom_extend" inherit_id="website.footer_custom" customize_show="True" name="Automatic Footer">
         <xpath expr="//div[@id='footer']" position="attributes">
             <attribute name="t-if">request.session.uid</attribute>
@@ -348,4 +357,5 @@
 
     </template>
 </odoo>
+
 

@@ -2,6 +2,8 @@ odoo.define('mclance_customization.website_sale', function (require) {
     "use strict";
 
     var core = require('web.core');
+    var Dialog = require('web.Dialog');
+    var ajax = require('web.ajax');
 
     $(document).ready(function () {
     $('#product_detail .quantity').change(function(){
@@ -10,6 +12,18 @@ odoo.define('mclance_customization.website_sale', function (require) {
         var margin_val = parseFloat($('#oe_margin_hide').text())
         $('#oe_margin > .oe_currency_value').text(parseFloat(margin_val*parseInt(qty)).toFixed(2))
     })
+
+    var product_name = $('#product_name_attachemnt').val()
+    $("#learn_more").on('click', function(event){
+        ajax.jsonRpc("/shop/open_attachment", 'call', {
+             'product_id': product_name,
+        }).then(function (data) {
+            if (data){
+                window.open(window.location.origin + "/web/content/" + data, 'new');
+            }
+        });
+
+    });
 
 	$('a.page-scroll').bind('click', function(event) {
 		var $anchor = $(this);
