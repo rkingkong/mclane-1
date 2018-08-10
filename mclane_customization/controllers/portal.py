@@ -7,7 +7,7 @@ from odoo.addons.website_sale.controllers.main import TableCompute
 from odoo import http
 from werkzeug.exceptions import NotFound
 from odoo.addons.website.controllers.main import QueryURL
-from odoo.addons.http_routing.models.ir_http import slug
+import odoo.addons.http_routing.models.ir_http
 import base64
 
 PPG = 20  # Products Per Page
@@ -15,6 +15,15 @@ PPR = 4  # Products Per Row
 
 
 class WebsiteSaleCustom(WebsiteSale):
+    @http.route(['/shop/open_attachment'], type='json', auth="public", methods=['POST'], website=True)
+    def modal_signup(self, **kw):
+        request.session['product_id'] = kw.get('product_id')
+        product = request.env['ir.attachment'].sudo().search([('res_model', '=', 'product.template')
+                                                          , ('res_id', '=', kw.get('product_id'))], limit=1)
+        if len(product):
+            return product.id
+        else:
+            return False
 
     @http.route([
         '/shop',
@@ -83,7 +92,7 @@ class WebsiteSaleCustom(WebsiteSale):
 
         parent_category_ids = []
         if category and category.id not in categ_ids:
-            url = "/shop/category/%s" % slug(category)
+            url = "/shop/category/%s" % odoo.addons.http_routing.models.ir_http.slug(category)
             parent_category_ids = [category.id]
             current_category = category
             while current_category.parent_id:
@@ -210,11 +219,14 @@ class Portal(Controller):
 
         tc = product_category.sudo().search([('name', 'ilike', 'Tobacco')], limit=1)
 
-        partner_cig = res_cat_flex.sudo().search([('product_category', '=', cig.id), ('partner_id', '=', partner.id)], limit=1)
+        partner_cig = res_cat_flex.sudo().search([('product_category', '=', cig.id), ('partner_id', '=', partner.id)],
+                                                 limit=1)
 
-        partner_tc = res_cat_flex.sudo().search([('product_category', '=', tc.id), ('partner_id', '=', partner.id)], limit=1)
+        partner_tc = res_cat_flex.sudo().search([('product_category', '=', tc.id), ('partner_id', '=', partner.id)],
+                                                limit=1)
 
-        partner_sale = res_cat_flex.sudo().search([('product_category', '=', False), ('partner_id', '=', partner.id)], limit=1)
+        partner_sale = res_cat_flex.sudo().search([('product_category', '=', False), ('partner_id', '=', partner.id)],
+                                                  limit=1)
 
         vals_cig = {
             'partner_id': partner.id,
