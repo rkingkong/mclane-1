@@ -5,6 +5,10 @@
             <script type="text/javascript" src="/mclane_customization/static/src/js/website_sale.js"/>
             <link rel="stylesheet" href="/mclane_customization/static/src/css/website_sale.css" />
             <script type="text/javascript" src="/mclane_customization/static/src/js/jquery.easing.js"/>
+	    <link rel="stylesheet" href="/mclane_customization/static/src/css/main.css" />
+            <link rel="stylesheet" href="/mclane_customization/static/src/css/local.css" />
+            <link rel="stylesheet" href="/mclane_customization/static/src/css/common.css" />
+            <link rel="stylesheet" href="/mclane_customization/static/src/css/hersheysfranchise.css" />
         </xpath>
     </template>
 
