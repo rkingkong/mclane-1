@@ -1,0 +1,20 @@
+<odoo>
+    <data>
+        <!-- Inherit Delivery Slip Report (From Stock Module) -->
+        <template id="report_delivery_inherit" inherit_id="stock.report_delivery_document">
+
+	    <xpath expr="//div[@class='page']" position="after">
+            <p style="page-break-before:always;"> </p>
+
+            <t t-foreach="o.move_lines" t-as="hazard_docs">
+                <t t-if="hazard_docs.product_id.hazardous_files">
+                    <t t-foreach="hazard_docs.product_id.hazardous_files" t-as="files">
+                        <img t-attf-src="data:image/jpg;base64,{{ files.file }}" width="1000px" height="1000px"/>
+                    </t>
+                </t>
+            </t>
+	    </xpath>
+
+        </template>
+    </data>
+</odoo>
