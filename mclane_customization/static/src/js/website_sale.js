@@ -6,12 +6,6 @@ odoo.define('mclance_customization.website_sale', function (require) {
     var ajax = require('web.ajax');
 
     $(document).ready(function () {
-    $('#product_detail .quantity').change(function(){
-        var $input = $(this);
-        var qty = $(this).val()
-        var margin_val = parseFloat($('#oe_margin_hide').text())
-        $('#oe_margin > .oe_currency_value').text(parseFloat(margin_val*parseInt(qty)).toFixed(2))
-    })
 
     var product_name = $('#product_name_attachemnt').val()
     $("#learn_more").on('click', function(event){
