@@ -34,7 +34,7 @@
                 <t t-set="body_bg" t-value="request.env['ir.default'].sudo().get('mega.menu.config', 'mega_menu_body_bg')"/>
                 <div class="header" t-if="request.env['ir.default'].sudo().get('mega.menu.config', 'display_text_header')" t-attf-style="background-color:##{header_bg_color or '9E9E9E'}; color:##{header_color or '212121'}">
 
-												<strong><t t-esc="request.env['ir.default'].sudo().get('mega.menu.config', 'mega_menu_header_text')"/></strong>
+                        <strong><t t-esc="request.env['ir.default'].sudo().get('mega.menu.config', 'mega_menu_header_text')"/></strong>
 
                 </div>
                 <t t-set="url" t-value="none"/>
@@ -72,7 +72,7 @@
           <div class="col-md-3">
             <t  t-set="root_color" t-value="request.env['ir.default'].sudo().get('mega.menu.config', 'root_categ_color')"/>
             <strong>
-                <span t-if="c.image_small and c.child_id" t-field="c.image_small" class="mega_cat_image" t-options="{'widget': 'image'}" ></span>
+                <span t-if="c.image_small" t-field="c.image_small" class="mega_cat_image" t-options="{'widget': 'image'}" ></span>
                 <a t-attf-href="/shop/category/#{slug(c)}"  style="padding:5px 0px; font-size:16px;" t-attf-style="color:##{root_color or '212121'}">
 
                     <t t-esc="c.name"/>
