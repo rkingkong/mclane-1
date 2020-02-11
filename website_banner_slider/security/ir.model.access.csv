@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+,,,,,,,
+access_product_website_banner_images_public_user,website.banner.images,model_website_banner_images,base.group_public,1,0,0,0
+access_product_website_banner_images_users,website.banner.images,model_website_banner_images,,1,0,0,0
+access_product_website_banner_images_portal_user,website.banner.images,model_website_banner_images,base.group_portal,1,0,0,0

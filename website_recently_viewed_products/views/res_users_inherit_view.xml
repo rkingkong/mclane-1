@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="res_users_recentaly_viewed_products_view" model="ir.ui.view">
+            <field name="name">res.users.first.order</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="Recently Viewed Products">
+                        <field name="recently_viewed_products" readonly="1">
+                            <tree>
+                                <field name="product_id"/>
+                                <field name="view_date"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

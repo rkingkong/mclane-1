@@ -1,0 +1,118 @@
+/**
+ * Owl Carousel v2.3.4
+ * Copyright 2013-2018 David Deutsch
+ * Licensed under: SEE LICENSE IN https://github.com/OwlCarousel2/OwlCarousel2/blob/master/LICENSE
+ */
+/*
+ * 	Green theme - Owl Carousel CSS File
+ */
+ .gallery{
+   /* padding-bottom: 60px; */
+   margin-bottom: 30px;
+ }
+ #owl-gallery{
+   padding-bottom: 5px;
+
+ }
+ #owl-gallery .owl-item img{
+   max-height: 400px;
+}
+ .gallery{position: relative;}
+ .gallery #custom-nav.owl-nav {
+  position: absolute;
+  /* transform: translate(-50%); */
+  z-index: 1;
+  bottom: 50%;
+  height:auto;
+  width: 100%;
+  padding: 0 15px;
+  display: inline-block;
+  font-size: 30px;
+  transform: translate(0%,50%);
+  -webkit-tap-highlight-color: transparent; }
+  .gallery #custom-nav.owl-nav .owl-prev{
+  
+    padding: 10px 15px;
+    float: left;
+   
+  }
+  .gallery #custom-nav.owl-nav .owl-next{
+ 
+    padding: 10px 15px;
+   float: right;
+
+  }
+
+.gallery #custom-nav.owl-nav .disabled {
+    opacity: 0.5;
+    cursor: default; }
+
+.gallery #custom.owl-dots {
+  text-align: center;
+  -webkit-tap-highlight-color: transparent; }
+.gallery #custom.owl-dots .owl-dot {
+    display: inline-block;
+   
+    zoom: 1;
+  }
+     
+.gallery #custom-nav.owl-nav .owl-prev span{
+    background-image: url("/website_banner_slider/static/src/img/Sprite.png");
+    background-position: -25px -25px;
+    display: block;
+    height: 58px;
+    cursor: pointer;
+    opacity: 1;
+    width: 32px;
+}
+.gallery #custom-nav.owl-nav .owl-next span{
+  background-image: url("/website_banner_slider/static/src/img/Sprite.png");
+  background-position: -55px -25px;
+  display: block;
+  height: 58px;
+  cursor: pointer;
+  opacity: 1;
+  width: 32px;
+} 
+/* .gallery #custom.owl-dots .owl-dot span {
+      display: inline-block;
+      height: inherit;
+      width: inherit;
+      -webkit-backface-visibility: visible;
+      transition: opacity 200ms ease;
+} */
+
+@media only screen and (max-width: 768px) {
+  .gallery #custom-nav.owl-nav .owl-prev{
+    padding: 0px 5px;
+  }
+  .gallery #custom-nav.owl-nav .owl-next{
+    padding: 0px 5px;
+  }
+  .gallery #custom-nav.owl-nav .owl-prev span{
+    background-position: -13px -18px;
+    background-size: 90px 55px;
+    display: block;
+    height: 38px;
+    opacity: 1;
+    width: 17px;
+  }
+  .gallery #custom-nav.owl-nav .owl-next span{
+    background-position: -31px -18px;
+    background-size: 90px 55px;
+    display: block;
+    height: 38px;
+    opacity: 1;
+    width: 17px;
+  } 
+  .gallery #custom.owl-dots .owl-dot span {
+        display: inline-block;
+        height: inherit;
+        width: inherit;
+        -webkit-backface-visibility: visible;
+        transition: opacity 200ms ease;
+  }
+  
+}
+
+	

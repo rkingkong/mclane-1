@@ -1,0 +1,8 @@
+ function changeFirst(isHover) {
+      
+        if (isHover) {
+            document.getElementById('first').style.backgroundImage = "url('x.jpeg')";
+        } else {
+            document.getElementById('first').style.backgroundImage = "url('images.jpeg')";
+        }
+    }

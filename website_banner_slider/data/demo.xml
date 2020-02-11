@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data noupdate="0">
+    <record id="banner_1" model="website.banner.images">
+      <field name="name">Banner 1</field>
+      <field name="state">published</field>
+      <field name="sequence">1</field>
+      <field name="image" type="base64" file="website_banner_slider/static/src/img/Banners/1.png"/>
+    </record>
+    <record id="banner_2" model="website.banner.images">
+      <field name="name">Banner 2</field>
+      <field name="state">published</field>
+      <field name="sequence">2</field>
+      <field name="image" type="base64" file="website_banner_slider/static/src/img/Banners/2.png"/>
+    </record>
+    <record id="banner_3" model="website.banner.images">
+      <field name="name">Banner 3</field>
+      <field name="state">published</field>
+      <field name="sequence">3</field>
+      <field name="image" type="base64" file="website_banner_slider/static/src/img/Banners/3.png"/>
+    </record>
+    <record id="banner_4" model="website.banner.images">
+      <field name="name">Banner 4</field>
+      <field name="state">published</field>
+      <field name="sequence">4</field>
+      <field name="image" type="base64" file="website_banner_slider/static/src/img/Banners/4.png"/>
+    </record>
+    <record id="banner_5" model="website.banner.images">
+      <field name="name">Banner 5</field>
+      <field name="state">published</field>
+      <field name="sequence">5</field>
+      <field name="image" type="base64" file="website_banner_slider/static/src/img/Banners/5.png"/>
+    </record>
+    <function id="set_demo_banner_config" model="website.banner.config" name="wk_set_demo_banner_config"/>
+    
+  </data>
+</odoo>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+        <record id="website_banner_images_tree_view" model="ir.ui.view">
+            <field name="name">website.banner.images.tree</field>
+            <field name="model">website.banner.images</field>
+            <field name="arch" type="xml">
+                <tree string="Website Banner Images"> 
+                    <field name="name"/>
+                    <field name="sequence"/>
+                    <field name="state"/>
+                    <field name="lang"/>
+                </tree>
+            </field>
+        </record>
+        <record id="website_banner_images_form_view" model="ir.ui.view">
+            <field name="name">website.banner.images.form</field>
+            <field name="model">website.banner.images</field>
+            <field name="arch" type="xml">
+                <form string="Website Banner Images">
+                    <header>
+                    <field name="state" widget="statusbar"/>
+                        <button name="set_to_publish" string="Publish"   class="oe_highlight" type="object" attrs="{'invisible':[('state','=','published')]}"/>
+                        <button name="set_to_draft" string="Set To Draft"   class="oe_highlight" type="object" attrs="{'invisible':[('state','!=','published')]}"/>
+                    </header>
+                    <sheet>
+                         <group>
+                            <field name="name"/>
+                            <field name="sequence"/>
+                            <field name="link" />
+                            <field name="lang" />
+                        </group>
+                         <group string="Banner To Be Displayed">
+                            <field name="image" widget="image" nolabel="1" options='{"size": [750, 150]}'/>
+                         </group>
+                    </sheet>
+                  </form>  
+            </field>
+        </record>
+        <record id="website_banner_images_action_id" model="ir.actions.act_window">
+            <field name="name">Website Banner Images</field>
+            <field name="res_model">website.banner.images</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="website_banner_images_tree_view"/>
+        </record>
+
+    </data>
+   </odoo> 
+

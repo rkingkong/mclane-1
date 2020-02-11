@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : <https://store.webkul.com/license.html/> -->
+
+<odoo>
+   <record id="view_website_form" model="ir.ui.view">
+        <field name="model">website</field>
+        <field name="inherit_id" ref="website.view_website_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='social_twitter']" position="replace">
+                <field name="social_twitter" placeholder="https://twitter.com"/>
+            </xpath>
+            <xpath expr="//field[@name='social_facebook']" position="replace">
+                <field name="social_facebook" placeholder="https://www.facebook.com"/>
+            </xpath>
+            <xpath expr="//field[@name='social_github']" position="replace">
+                <field name="social_github" placeholder="https://plus.google.com"/>
+            </xpath>
+            <xpath expr="//field[@name='social_linkedin']" position="replace">
+                <field name="social_linkedin" placeholder="https://www.linkedin.com"/>
+            </xpath>
+            <xpath expr="//field[@name='social_youtube']" position="replace">
+                <field name="social_youtube" placeholder="https://www.youtube.com"/>
+            </xpath>
+            <xpath expr="//field[@name='social_googleplus']" position="replace">
+                <field name="social_googleplus" placeholder=""/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
