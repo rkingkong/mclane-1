@@ -1,0 +1,933 @@
+<odoo>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+	<data noupdate="1">
+        <function id="display_text_header_id" model="ir.default" name="set"
+        eval="('mega.menu.config', 'display_text_header', True)"/>
+        <function id="mega_menu_header_text_id" model="ir.default" name="set"
+        eval="('mega.menu.config', 'mega_menu_header_text', 'Select Categories')"/>
+        <function id="mega_menu_header_color_id" model="ir.default" name="set"
+        eval="('mega.menu.config', 'mega_menu_header_color', '212121')"/>
+        <function id="mega_menu_header_bg_id" model="ir.default" name="set"
+        eval="('mega.menu.config', 'mega_menu_header_bg', 'BDBDBD')"/>
+        <function id="mega_menu_body_bg_id" model="ir.default" name="set"
+        eval="('mega.menu.config', 'mega_menu_body_bg', 'F5F5F5')"/>
+        <function id="mega_menu_body_color_id" model="ir.default" name="set"
+        eval="('mega.menu.config', 'mega_menu_body_color', '757575')"/>
+        <function id="root_categ_color_id" model="ir.default" name="set"
+        eval="('mega.menu.config', 'root_categ_color', 'C51162')"/>
+
+        <!-- #####################   Elcectonics Categories ##########################-->
+        <record id="electonics_root_category" model="product.public.category">
+            <field name="name">Electronics</field>
+        </record>
+
+        <record id="electonics_category_2" model="product.public.category">
+            <field name="name">Mobiles Accessories</field>
+            <field name="parent_id" ref="electonics_root_category"></field>
+            <field name="image" type="base64" file="website_mega_menus/static/src/img/mm2.jpg"/>
+        </record>
+				        <record id="accessory_1" model="product.public.category">
+				            <field name="name">Mobile Cases</field>
+				            <field name="parent_id" ref="electonics_category_2"></field>
+				        </record>
+				         <record id="accessory_2" model="product.public.category">
+				            <field name="name">HeadPhones and Headsets</field>
+				            <field name="parent_id" ref="electonics_category_2"></field>
+				        </record>
+
+				         <record id="accessory_3" model="product.public.category">
+				            <field name="name">Power Banks</field>
+				            <field name="parent_id" ref="electonics_category_2"></field>
+				        </record>
+				         <record id="accessory_4" model="product.public.category">
+				            <field name="name">Screen Gaurds</field>
+				            <field name="parent_id" ref="electonics_category_2"></field>
+				        </record>
+				         <record id="accessory_5" model="product.public.category">
+				            <field name="name">Memmory Cards</field>
+				            <field name="parent_id" ref="electonics_category_2"></field>
+				        </record>
+				        <record id="accessory_6" model="product.public.category">
+				            <field name="name">Smart Headphones</field>
+				            <field name="parent_id" ref="electonics_category_2"></field>
+				        </record>
+				        <record id="accessory_7" model="product.public.category">
+				            <field name="name">Mobile Cables</field>
+				            <field name="parent_id" ref="electonics_category_2"></field>
+				        </record>
+				        <record id="accessory_8" model="product.public.category">
+				            <field name="name">Chargers</field>
+				            <field name="parent_id" ref="electonics_category_2"></field>
+				        </record>
+				        <record id="accessory_9" model="product.public.category">
+				            <field name="name">Selfie Sticks</field>
+				            <field name="parent_id" ref="electonics_category_2"></field>
+				        </record>
+								<record id="accessory_10" model="product.public.category">
+				            <field name="name">Xiomi</field>
+				            <field name="parent_id" ref="electonics_category_2"></field>
+				        </record>
+				        <record id="accessory_11" model="product.public.category">
+				            <field name="name">Htc</field>
+				            <field name="parent_id" ref="electonics_category_2"></field>
+				        </record>
+
+        <record id="mobile_cases_1" model="product.public.category">
+            <field name="name">Leather</field>
+            <field name="parent_id" ref="accessory_1"></field>
+        </record>
+        <record id="mobile_cases_2" model="product.public.category">
+            <field name="name">Plastic</field>
+            <field name="parent_id" ref="accessory_1"></field>
+        </record>
+        <record id="mobile_cases_3" model="product.public.category">
+            <field name="name">Metal</field>
+            <field name="parent_id" ref="accessory_1"></field>
+        </record>
+        <record id="mobile_cases_4" model="product.public.category">
+            <field name="name">Glass</field>
+            <field name="parent_id" ref="accessory_1"></field>
+        </record>
+        <record id="mobile_cases_5" model="product.public.category">
+            <field name="name">Other</field>
+            <field name="parent_id" ref="accessory_1"></field>
+        </record>
+
+        <record id="electonics_category_1" model="product.public.category">
+            <field name="name">Mobiles</field>
+            <field name="parent_id" ref="electonics_root_category"></field>
+	        <field name="image" type="base64" file="website_mega_menus/static/src/img/mm1.jpg"/>
+        </record>
+
+        <record id="mobiles_1" model="product.public.category">
+            <field name="name">Samsung</field>
+            <field name="parent_id" ref="electonics_category_1"></field>
+        </record>
+
+        <record id="mobiles_2" model="product.public.category">
+            <field name="name">Lenovo</field>
+            <field name="parent_id" ref="electonics_category_1"></field>
+        </record>
+        <record id="mobiles_3" model="product.public.category">
+            <field name="name">Motorola</field>
+            <field name="parent_id" ref="electonics_category_1"></field>
+        </record>
+        <record id="mobiles_4" model="product.public.category">
+            <field name="name">Apple</field>
+            <field name="parent_id" ref="electonics_category_1"></field>
+        </record>
+        <record id="mobiles_5" model="product.public.category">
+            <field name="name">Panasonic</field>
+            <field name="parent_id" ref="electonics_category_1"></field>
+        </record>
+        <record id="mobiles_6" model="product.public.category">
+            <field name="name">Oppo</field>
+            <field name="parent_id" ref="electonics_category_1"></field>
+        </record>
+         <record id="mobiles_7" model="product.public.category">
+            <field name="name">Google Pixel</field>
+            <field name="parent_id" ref="electonics_category_1"></field>
+        </record>
+         <record id="mobiles_8" model="product.public.category">
+            <field name="name">Mi</field>
+            <field name="name" ref="electonics_category_1"></field>
+        </record>
+        <record id="mobiles_9" model="product.public.category">
+            <field name="name">Vivo</field>
+            <field name="parent_id" ref="electonics_category_1"></field>
+        </record>
+
+        <record id="apple_1" model="product.public.category">
+            <field name="name">64 GB</field>
+            <field name="parent_id" ref="mobiles_4"></field>
+        </record>
+        <record id="apple_2" model="product.public.category">
+            <field name="name">16 GB</field>
+            <field name="parent_id" ref="mobiles_4"></field>
+        </record>
+        <record id="apple_3" model="product.public.category">
+            <field name="name">32 GB</field>
+            <field name="parent_id" ref="mobiles_4"></field>
+        </record>
+        <record id="apple_4" model="product.public.category">
+            <field name="name">128 GB</field>
+            <field name="parent_id" ref="mobiles_4"></field>
+        </record>
+
+
+        <record id="electonics_category_3" model="product.public.category">
+            <field name="name">Smart Wearable Tech</field>
+            <field name="parent_id" ref="electonics_root_category"></field>
+            <field name="image" type="base64" file="website_mega_menus/static/src/img/mm3.jpg"/>
+        </record>
+				        <record id="smart_1" model="product.public.category">
+				            <field name="name">Smart Watches</field>
+				            <field name="parent_id" ref="electonics_category_3"></field>
+				        </record>
+				         <record id="smart_2" model="product.public.category">
+				            <field name="name">Smart Glasses</field>
+				            <field name="parent_id" ref="electonics_category_3"></field>
+				        </record>
+				        <record id="smart_3" model="product.public.category">
+				            <field name="name">Smart Bands</field>
+				            <field name="parent_id" ref="electonics_category_3"></field>
+				        </record>
+								<record id="smart_4" model="product.public.category">
+				            <field name="name">Healthwear</field>
+				            <field name="parent_id" ref="electonics_category_3"></field>
+				        </record>
+								<record id="smart_5" model="product.public.category">
+				            <field name="name">Smart-Eyewear</field>
+				            <field name="parent_id" ref="electonics_category_3"></field>
+				        </record>
+								<record id="smart_6" model="product.public.category">
+				            <field name="name">Pebble Die Hard</field>
+				            <field name="parent_id" ref="electonics_category_3"></field>
+				        </record>
+								<record id="smart_7" model="product.public.category">
+				            <field name="name">Connected Nana</field>
+				            <field name="parent_id" ref="electonics_category_3"></field>
+				        </record>
+								<record id="smart_8" model="product.public.category">
+				            <field name="name">Fitbit Vacationers</field>
+				            <field name="parent_id" ref="electonics_category_3"></field>
+				        </record>
+								<record id="smart_9" model="product.public.category">
+				            <field name="name">Covert Calorie Counter</field>
+				            <field name="parent_id" ref="electonics_category_3"></field>
+				        </record>
+								<record id="smart_10" model="product.public.category">
+				            <field name="name">Style Repeller</field>
+				            <field name="parent_id" ref="electonics_category_3"></field>
+				        </record>
+								<record id="smart_11" model="product.public.category">
+				            <field name="name">Fat Controller</field>
+				            <field name="parent_id" ref="electonics_category_3"></field>
+				        </record>
+
+        <record id="electonics_category_4" model="product.public.category">
+            <field name="name">Laptops</field>
+            <field name="parent_id" ref="website_sale.laptops"></field>
+            <field name="image" type="base64" file="website_mega_menus/static/src/img/mm4.png"/>
+        </record>
+
+        <record id="laptops_1" model="product.public.category">
+            <field name="name">Apple</field>
+            <field name="parent_id" ref="electonics_category_4"></field>
+        </record>
+        <record id="laptops_2" model="product.public.category">
+            <field name="name">HP</field>
+            <field name="parent_id" ref="electonics_category_4"></field>
+        </record>
+        <record id="laptops_3" model="product.public.category">
+            <field name="name">Dell</field>
+            <field name="parent_id" ref="electonics_category_4"></field>
+        </record>
+        <record id="laptops_3" model="product.public.category">
+            <field name="name">Samsung</field>
+            <field name="parent_id" ref="electonics_category_4"></field>
+        </record>
+        <record id="laptops_5" model="product.public.category">
+            <field name="name">Lenovo</field>
+            <field name="parent_id" ref="electonics_category_4"></field>
+        </record>
+        <record id="laptops_6" model="product.public.category">
+            <field name="name">HCL</field>
+            <field name="parent_id" ref="electonics_category_4"></field>
+        </record>
+        <record id="laptops_6" model="product.public.category">
+            <field name="name">Toshiba</field>
+            <field name="parent_id" ref="electonics_category_4"></field>
+        </record>
+
+        <record id="electonics_category_5" model="product.public.category">
+            <field name="name">Computer Accessories</field>
+            <field name="parent_id" ref="electonics_root_category"></field>
+            <field name="image" type="base64" file="website_mega_menus/static/src/img/mm5.jpg"/>
+        </record>
+
+        <record id="computer_acccesories_1" model="product.public.category">
+            <field name="name">External Hardisks</field>
+            <field name="parent_id" ref="electonics_category_5"></field>
+        </record>
+        <record id="computer_acccesories_2" model="product.public.category">
+            <field name="name">PenDrives</field>
+            <field name="parent_id" ref="electonics_category_5"></field>
+        </record>
+        <record id="computer_acccesories_3" model="product.public.category">
+            <field name="name">Laptop Skins</field>
+            <field name="parent_id" ref="electonics_category_5"></field>
+        </record>
+        <record id="computer_acccesories_4" model="product.public.category">
+            <field name="name">Mouse</field>
+            <field name="parent_id" ref="electonics_category_5"></field>
+        </record>
+        <record id="computer_acccesories_5" model="product.public.category">
+            <field name="name">Keyboard</field>
+            <field name="parent_id" ref="electonics_category_5"></field>
+        </record>
+        <record id="computer_acccesories_6" model="product.public.category">
+            <field name="name">Monitors</field>
+            <field name="parent_id" ref="electonics_category_5"></field>
+        </record>
+        <record id="computer_acccesories_7" model="product.public.category">
+            <field name="name">Printers</field>
+            <field name="parent_id" ref="electonics_category_5"></field>
+        </record>
+
+        <!-- <record id="electonics_category_6" model="product.public.category">
+            <field name="name">Cameras</field>
+            <field name="parent_id" ref="electonics_root_category"></field>
+        </record> -->
+
+        <!-- <record id="camera_1" model="product.public.category">
+            <field name="name">DSLR</field>
+            <field name="parent_id" ref="electonics_category_6"></field>
+        </record>
+        <record id="camera_2" model="product.public.category">
+            <field name="name">Sports and LifeStyle</field>
+            <field name="parent_id" ref="electonics_category_6"></field>
+        </record>
+        <record id="camera_3" model="product.public.category">
+            <field name="name">Point and Shoot</field>
+            <field name="parent_id" ref="electonics_category_6"></field>
+        </record> -->
+        <!--   ########  Clothing Categoris ###############-->
+
+        <record id="clothing_root_category" model="product.public.category">
+            <field name="name">Clothing</field>
+        </record>
+
+        <record id="footwear" model="product.public.category">
+            <field name="name">Footwear</field>
+            <field name="parent_id" ref="clothing_root_category"></field>
+            <field name="image" type="base64" file="website_mega_menus/static/src/img/cl1.jpg"/>
+        </record>
+
+        <!-- <record id="footwear_1" model="product.public.category">
+            <field name="name">Sports Shoes</field>
+            <field name="parent_id" ref="footwear"></field>
+        </record> -->
+
+        <record id="footwear_2" model="product.public.category">
+            <field name="name">Casual Shoes</field>
+            <field name="parent_id" ref="footwear"></field>
+        </record>
+
+        <record id="footwear_3" model="product.public.category">
+            <field name="name">Shoes</field>
+            <field name="parent_id" ref="footwear"></field>
+        </record>
+
+        <record id="footwear_4" model="product.public.category">
+            <field name="name">Sandals and Floaters</field>
+            <field name="parent_id" ref="footwear"></field>
+        </record>
+         <record id="footwear_5" model="product.public.category">
+            <field name="name">Flip-Flops</field>
+            <field name="parent_id" ref="footwear"></field>
+        </record>
+         <record id="footwear_6" model="product.public.category">
+            <field name="name">Loafers</field>
+            <field name="parent_id" ref="footwear"></field>
+        </record>
+         <record id="footwear_7" model="product.public.category">
+            <field name="name">Boots</field>
+            <field name="parent_id" ref="footwear"></field>
+        </record>
+        <record id="footwear_8" model="product.public.category">
+            <field name="name">Running Shoes</field>
+            <field name="parent_id" ref="footwear"></field>
+        </record>
+        <!-- <record id="footwear_9" model="product.public.category">
+            <field name="name">Sneakers</field>
+            <field name="parent_id" ref="footwear"></field>
+        </record> -->
+        <!-- <record id="sneakers_1" model="product.public.category">
+            <field name="name">Nike</field>
+            <field name="parent_id" ref="footwear_9"></field>
+        </record>
+        <record id="sneakers_1" model="product.public.category">
+            <field name="name">Woodland</field>
+            <field name="parent_id" ref="footwear_9"></field>
+        </record>
+        <record id="sneakers_2" model="product.public.category">
+            <field name="name">Addidas</field>
+            <field name="parent_id" ref="footwear_9"></field>
+        </record>
+        <record id="sneakers_3" model="product.public.category">
+            <field name="name">Puma</field>
+            <field name="parent_id" ref="footwear_9"></field>
+        </record>
+        <record id="sneakers_4" model="product.public.category">
+            <field name="name">Allen Soley</field>
+            <field name="parent_id" ref="footwear_9"></field>
+        </record>
+        <record id="sneakers_5" model="product.public.category">
+            <field name="name">Red Tape</field>
+            <field name="parent_id" ref="footwear_9"></field>
+        </record>
+        <record id="sneakers_6" model="product.public.category">
+            <field name="name">Wrong</field>
+            <field name="parent_id" ref="footwear_9"></field>
+        </record> -->
+
+        <record id="top_wear" model="product.public.category">
+            <field name="name">Top-Wear</field>
+            <field name="parent_id" ref="clothing_root_category"></field>
+            <field name="image" type="base64" file="website_mega_menus/static/src/img/cl2.jpg"/>
+        </record>
+
+        <record id="top_wear_1" model="product.public.category">
+            <field name="name">T-Shirts</field>
+            <field name="parent_id" ref="top_wear"></field>
+        </record>
+
+        <record id="top_wear_2" model="product.public.category">
+            <field name="name">Shirts</field>
+            <field name="parent_id" ref="top_wear"></field>
+        </record>
+        <record id="top_wear_7" model="product.public.category">
+            <field name="name">Kurtas</field>
+            <field name="parent_id" ref="top_wear"></field>
+        </record>
+        <record id="top_wear_3" model="product.public.category">
+            <field name="name">Suits and Blazers</field>
+            <field name="parent_id" ref="top_wear"></field>
+        </record>
+        <record id="top_wear_4" model="product.public.category">
+            <field name="name">Jackets</field>
+            <field name="parent_id" ref="top_wear"></field>
+        </record>
+        <record id="top_wear_5" model="product.public.category">
+            <field name="name">SweatShirts</field>
+            <field name="parent_id" ref="top_wear"></field>
+        </record>
+
+        <!-- <record id="t_shirts_1" model="product.public.category">
+            <field name="name">Round-Neck</field>
+            <field name="parent_id" ref="top_wear_1"></field>
+        </record> -->
+        <record id="t_shirts_2" model="product.public.category">
+            <field name="name">V-Neck</field>
+            <field name="parent_id" ref="top_wear_1"></field>
+        </record>
+        <!-- <record id="t_shirts_3" model="product.public.category">
+            <field name="name">Full-Seleves</field>
+            <field name="parent_id" ref="top_wear_1"></field>
+        </record>
+        <record id="t_shirts_4" model="product.public.category">
+            <field name="name">Half-Neck</field>
+            <field name="parent_id" ref="top_wear_1"></field>
+        </record> -->
+
+        <!-- <record id="round_neck_1" model="product.public.category">
+            <field name="name">Casual</field>
+            <field name="parent_id" ref="t_shirts_1"></field>
+        </record>
+        <record id="round_neck_2" model="product.public.category">
+            <field name="name">GYM Wear</field>
+            <field name="parent_id" ref="t_shirts_1"></field>
+        </record> -->
+
+        <record id="bottom_wear" model="product.public.category">
+            <field name="name">Bottom Wear</field>
+            <field name="parent_id" ref="clothing_root_category"></field>
+            <field name="image" type="base64" file="website_mega_menus/static/src/img/cl3.jpg"/>
+        </record>
+				        <record id="bottom_wear_1" model="product.public.category">
+				            <field name="name">Jeans</field>
+				            <field name="parent_id" ref="bottom_wear"></field>
+				        </record>
+				        <!-- <record id="bottom_wear_3" model="product.public.category">
+				            <field name="name">Trousers</field>
+				            <field name="parent_id" ref="bottom_wear"></field>
+				        </record> -->
+								<record id="bottom_wear_4" model="product.public.category">
+				            <field name="name">Punk Pants</field>
+				            <field name="parent_id" ref="bottom_wear"></field>
+				        </record>
+								<record id="bottom_wear_5" model="product.public.category">
+				            <field name="name">Fatigue Trousers</field>
+				            <field name="parent_id" ref="bottom_wear"></field>
+				        </record>
+								<record id="bottom_wear_6" model="product.public.category">
+				            <field name="name">Peg-leg pants</field>
+				            <field name="parent_id" ref="bottom_wear"></field>
+				        </record>
+				        <record id="bottom_wear_7" model="product.public.category">
+				            <field name="name">Shorts</field>
+				            <field name="parent_id" ref="bottom_wear"></field>
+				        </record>
+				        <record id="bottom_wear_8" model="product.public.category">
+				            <field name="name">Cargos</field>
+				            <field name="parent_id" ref="bottom_wear"></field>
+				        </record>
+				        <record id="bottom_wear_9" model="product.public.category">
+				            <field name="name">Track Pants</field>
+				            <field name="parent_id" ref="bottom_wear"></field>
+				        </record>
+
+
+        <record id="accessories_wear" model="product.public.category">
+            <field name="name">Accessories</field>
+            <field name="parent_id" ref="clothing_root_category"></field>
+            <field name="image" type="base64" file="website_mega_menus/static/src/img/cl4.jpg"/>
+        </record>
+				        <record id="accessories_wear_1" model="product.public.category">
+				            <field name="name">Backpacks</field>
+				            <field name="parent_id" ref="accessories_wear"></field>
+				        </record>
+
+				         <record id="accessories_wear_2" model="product.public.category">
+				            <field name="name">Backpacks</field>
+				            <field name="parent_id" ref="accessories_wear"></field>
+				        </record>
+				         <record id="accessories_wear_3" model="product.public.category">
+				            <field name="name">Wallets</field>
+				            <field name="parent_id" ref="accessories_wear"></field>
+				        </record>
+				         <!-- <record id="accessories_wear_4" model="product.public.category">
+				            <field name="name">Belts</field>
+				            <field name="parent_id" ref="accessories_wear"></field>
+				        </record> -->
+				         <!-- <record id="accessories_wear_5" model="product.public.category">
+				            <field name="name">Sunglasses</field>
+				            <field name="parent_id" ref="accessories_wear"></field>
+				        </record> -->
+				         <record id="accessories_wear_6" model="product.public.category">
+				            <field name="name">Lugage and Travel</field>
+				            <field name="parent_id" ref="accessories_wear"></field>
+				        </record> <record id="accessories_wear_7" model="product.public.category">
+				            <field name="name">Frames</field>
+				            <field name="parent_id" ref="accessories_wear"></field>
+				        </record>
+							<record id="accessories_wear_8" model="product.public.category">
+									<field name="name">Fashion accessory</field>
+									<field name="parent_id" ref="accessories_wear"></field>
+							</record>
+						<record id="accessories_wear_9" model="product.public.category">
+								<field name="name">Handkerchief</field>
+								<field name="parent_id" ref="accessories_wear"></field>
+						</record>
+
+
+
+        <record id="watches" model="product.public.category">
+            <field name="name">Watches</field>
+            <field name="parent_id" ref="clothing_root_category"></field>
+            <field name="image" type="base64" file="website_mega_menus/static/src/img/cl5.jpg"/>
+        </record>
+
+				<record id="Skirts" model="product.public.category">
+            <field name="name">Skirts</field>
+            <field name="parent_id" ref="clothing_root_category"></field>
+            <field name="image" type="base64" file="website_mega_menus/static/src/img/skirts.jpeg"/>
+        </record>
+								<record id="Skirts_1" model="product.public.category">
+										<field name="name">Flare Skirts</field>
+										<field name="parent_id" ref="Skirts"></field>
+								</record>
+								<record id="Skirts_2" model="product.public.category">
+										<field name="name">Broomstick Skirt</field>
+										<field name="parent_id" ref="Skirts"></field>
+								</record>
+								<record id="Skirts_3" model="product.public.category">
+										<field name="name">Mini Skirts</field>
+										<field name="parent_id" ref="Skirts"></field>
+								</record>
+								<record id="Skirts_4" model="product.public.category">
+										<field name="name">Pleated Skirts</field>
+										<field name="parent_id" ref="Skirts"></field>
+								</record>
+								<record id="Skirts_5" model="product.public.category">
+										<field name="name">Maxi Skirts</field>
+										<field name="parent_id" ref="Skirts"></field>
+								</record>
+								<record id="Skirts_6" model="product.public.category">
+										<field name="name">Long Skirt</field>
+										<field name="parent_id" ref="Skirts"></field>
+								</record>
+								<record id="Skirts_7" model="product.public.category">
+										<field name="name">A-Line Skirt</field>
+										<field name="parent_id" ref="Skirts"></field>
+								</record>
+
+
+
+				<record id="Jackets" model="product.public.category">
+            <field name="name">Coats And Jackets</field>
+            <field name="parent_id" ref="clothing_root_category"></field>
+            <field name="image" type="base64" file="website_mega_menus/static/src/img/Jackets.jpeg"/>
+        </record>
+								<record id="Jackets_1" model="product.public.category">
+				            <field name="name">Bomber Jackets</field>
+				            <field name="parent_id" ref="Jackets"></field>
+				        </record>
+								<record id="Jackets_2" model="product.public.category">
+				            <field name="name">Biker Jacket</field>
+				            <field name="parent_id" ref="Jackets"></field>
+				        </record>
+								<record id="Jackets_3" model="product.public.category">
+				            <field name="name">Trucker Jacket</field>
+				            <field name="parent_id" ref="Jackets"></field>
+				        </record>
+								<record id="Jackets_4" model="product.public.category">
+				            <field name="name">Denim Jackets</field>
+				            <field name="parent_id" ref="Jackets"></field>
+				        </record>
+								<record id="Jackets_5" model="product.public.category">
+				            <field name="name">Track Jacket</field>
+				            <field name="parent_id" ref="Jackets"></field>
+				        </record>
+								<record id="Jackets_6" model="product.public.category">
+				            <field name="name">Blouson Jacket</field>
+				            <field name="parent_id" ref="Jackets"></field>
+				        </record>
+								<record id="Jackets_7" model="product.public.category">
+				            <field name="name">Hooded Jacket</field>
+				            <field name="parent_id" ref="Jackets"></field>
+				        </record>
+
+
+				<record id="Sweater" model="product.public.category">
+            <field name="name">Sweater</field>
+            <field name="parent_id" ref="clothing_root_category"></field>
+            <field name="image" type="base64" file="website_mega_menus/static/src/img/Sweater.jpeg"/>
+        </record>
+								<record id="Sweater_1" model="product.public.category">
+				            <field name="name">Cardigan Sweater</field>
+				            <field name="parent_id" ref="Sweater"></field>
+				        </record>
+								<record id="Sweater_2" model="product.public.category">
+				            <field name="name">Half-Zip Sweater</field>
+				            <field name="parent_id" ref="Sweater"></field>
+				        </record>
+								<record id="Sweater_3" model="product.public.category">
+				            <field name="name">Roll Neck Sweater</field>
+				            <field name="parent_id" ref="Sweater"></field>
+				        </record>
+								<record id="Sweater_4" model="product.public.category">
+				            <field name="name">Silk Sweater</field>
+				            <field name="parent_id" ref="Sweater"></field>
+				        </record>
+								<record id="Sweater_5" model="product.public.category">
+				            <field name="name">Cable Knit Sweater</field>
+				            <field name="parent_id" ref="Sweater"></field>
+				        </record>
+								<record id="Sweater_6" model="product.public.category">
+				            <field name="name">Knitted Sweater</field>
+				            <field name="parent_id" ref="Sweater"></field>
+				        </record>
+								<record id="Sweater_7" model="product.public.category">
+				            <field name="name">Turtleneck Sweater</field>
+				            <field name="parent_id" ref="Sweater"></field>
+				        </record>
+
+
+
+
+        <record id="watches_1" model="product.public.category">
+            <field name="name">Fastrack</field>
+            <field name="parent_id" ref="watches"></field>
+        </record>
+        <record id="watches_2" model="product.public.category">
+            <field name="name">Casio</field>
+            <field name="parent_id" ref="watches"></field>
+        </record>
+        <record id="watches_3" model="product.public.category">
+            <field name="name">Titan</field>
+            <field name="parent_id" ref="watches"></field>
+        </record>
+        <record id="watches_4" model="product.public.category">
+            <field name="name">Fossil</field>
+            <field name="parent_id" ref="watches"></field>
+        </record>
+        <record id="watches_5" model="product.public.category">
+            <field name="name">Sonata</field>
+            <field name="parent_id" ref="watches"></field>
+        </record>
+        <record id="watches_6" model="product.public.category">
+            <field name="name">Timex</field>
+            <field name="parent_id" ref="watches"></field>
+        </record>
+        <record id="watches_7" model="product.public.category">
+            <field name="name">Maxima</field>
+            <field name="parent_id" ref="watches"></field>
+        </record>
+
+        <!--#############  Sports and Books ################-->
+
+        <record id="sports_and_books_root_category" model="product.public.category">
+            <field name="name">Sports and Books</field>
+        </record>
+        <record id="books" model="product.public.category">
+            <field name="name">Books</field>
+            <field name="parent_id" ref="sports_and_books_root_category"></field>
+            <field name="image" type="base64" file="website_mega_menus/static/src/img/bk1.jpg"/>
+        </record>
+
+         <record id="books_1" model="product.public.category">
+            <field name="name">Entrance Exams</field>
+            <field name="parent_id" ref="books"></field>
+        </record>
+        <record id="books_1" model="product.public.category">
+            <field name="name">Academics</field>
+            <field name="parent_id" ref="books"></field>
+        </record>
+
+        <record id="books_2" model="product.public.category">
+            <field name="name">Biography</field>
+            <field name="parent_id" ref="books"></field>
+        </record>
+
+        <record id="books_3" model="product.public.category">
+            <field name="name">History</field>
+            <field name="parent_id" ref="books"></field>
+        </record>
+
+        <record id="books_4" model="product.public.category">
+            <field name="name">Drama</field>
+            <field name="parent_id" ref="books"></field>
+        </record>
+
+        <record id="books_5" model="product.public.category">
+            <field name="name">Children</field>
+            <field name="parent_id" ref="books"></field>
+        </record>
+
+        <record id="books_6" model="product.public.category">
+            <field name="name">Business</field>
+            <field name="parent_id" ref="books"></field>
+        </record>
+        <record id="books_7" model="product.public.category">
+            <field name="name">Self Help</field>
+            <field name="parent_id" ref="books"></field>
+        </record>
+
+        <record id="books_8" model="product.public.category">
+            <field name="name">Comics</field>
+            <field name="parent_id" ref="books"></field>
+        </record>
+
+        <record id="books_9" model="product.public.category">
+            <field name="name">Novels</field>
+            <field name="parent_id" ref="books"></field>
+        </record>
+
+        <!-- <record id="biography_1" model="product.public.category">
+            <field name="name">English</field>
+            <field name="parent_id" ref="books_2"></field>
+        </record>
+          <record id="biography_2" model="product.public.category">
+            <field name="name">French</field>
+            <field name="parent_id" ref="books_2"></field>
+        </record>
+        <record id="biography_3" model="product.public.category">
+            <field name="name">Spanish</field>
+            <field name="parent_id" ref="books_2"></field>
+        </record>
+        <record id="biography_4" model="product.public.category">
+            <field name="name">Hindi</field>
+            <field name="parent_id" ref="books_2"></field>
+        </record>
+        <record id="biography_5" model="product.public.category">
+            <field name="name">Persian</field>
+            <field name="parent_id" ref="books_2"></field>
+        </record> -->
+
+        <record id="statinaries" model="product.public.category">
+            <field name="name">Stationery</field>
+            <field name="parent_id" ref="sports_and_books_root_category"></field>
+            <field name="image" type="base64" file="website_mega_menus/static/src/img/bk2.jpg"/>
+        </record>
+				        <record id="statinaries_1" model="product.public.category">
+				            <field name="name">Pens</field>
+				            <field name="parent_id" ref="statinaries"></field>
+				        </record>
+				        <record id="statinaries_2" model="product.public.category">
+				            <field name="name">Diaries</field>
+				            <field name="parent_id" ref="statinaries"></field>
+				        </record>
+				        <record id="statinaries_3" model="product.public.category">
+				            <field name="name">Key Chains</field>
+				            <field name="parent_id" ref="statinaries"></field>
+				        </record>
+				        <record id="statinaries_4" model="product.public.category">
+				            <field name="name">Desk Organisers</field>
+				            <field name="parent_id" ref="statinaries"></field>
+				        </record>
+				        <record id="statinaries_5" model="product.public.category">
+				            <field name="name">Calculators</field>
+				            <field name="parent_id" ref="statinaries"></field>
+				        </record>
+								<record id="statinaries_9" model="product.public.category">
+				            <field name="name">Hole Punches</field>
+				            <field name="parent_id" ref="statinaries"></field>
+				        </record>
+								<record id="statinaries_6" model="product.public.category">
+				            <field name="name">Colored pencil</field>
+				            <field name="parent_id" ref="statinaries"></field>
+				        </record>
+								<record id="statinaries_7" model="product.public.category">
+				            <field name="name">Erasers</field>
+				            <field name="parent_id" ref="statinaries"></field>
+				        </record>
+								<record id="statinaries_8" model="product.public.category">
+				            <field name="name">Paper</field>
+				            <field name="parent_id" ref="statinaries"></field>
+				        </record>
+
+        <record id="gaming_accessories" model="product.public.category">
+            <field name="name">Gaming and Accessories</field>
+            <field name="parent_id" ref="sports_and_books_root_category"></field>
+            <field name="image" type="base64" file="website_mega_menus/static/src/img/bk4.jpg"/>
+        </record>
+				        <record id="gaming_accessories_1" model="product.public.category">
+				            <field name="name">PS3</field>
+				            <field name="parent_id" ref="gaming_accessories"></field>
+				        </record>
+				        <record id="gaming_accessories_2" model="product.public.category">
+				            <field name="name">PS4</field>
+				            <field name="parent_id" ref="gaming_accessories"></field>
+				        </record>
+				        <record id="gaming_accessories_3" model="product.public.category">
+				            <field name="name">Xbox One</field>
+				            <field name="parent_id" ref="gaming_accessories"></field>
+				        </record>
+				        <record id="gaming_accessories_4" model="product.public.category">
+				            <field name="name">Xbox 360</field>
+				            <field name="parent_id" ref="gaming_accessories"></field>
+				        </record>
+				        <record id="gaming_accessories_5" model="product.public.category">
+				            <field name="name">Gaming Consoles</field>
+				            <field name="parent_id" ref="gaming_accessories"></field>
+				        </record>
+								<record id="gaming_accessories_6" model="product.public.category">
+				            <field name="name">Razer Nostromo</field>
+				            <field name="parent_id" ref="gaming_accessories"></field>
+				        </record>
+								<record id="gaming_accessories_7" model="product.public.category">
+				            <field name="name">Logitech G27 Racing Wheel</field>
+				            <field name="parent_id" ref="gaming_accessories"></field>
+				        </record>
+								<record id="gaming_accessories_8" model="product.public.category">
+				            <field name="name">Razer Hydra</field>
+				            <field name="parent_id" ref="gaming_accessories"></field>
+				        </record>
+								<record id="gaming_accessories_9" model="product.public.category">
+				            <field name="name">Logitech Flight System</field>
+				            <field name="parent_id" ref="gaming_accessories"></field>
+				        </record>
+
+
+        <record id="sports" model="product.public.category">
+            <field name="name">Sports</field>
+            <field name="parent_id" ref="sports_and_books_root_category"></field>
+            <field name="image" type="base64" file="website_mega_menus/static/src/img/bk3.jpg"/>
+        </record>
+        <record id="sports_1" model="product.public.category">
+            <field name="name">Football</field>
+            <field name="parent_id" ref="sports"></field>
+        </record>
+          <record id="sports_2" model="product.public.category">
+            <field name="name">Badminton</field>
+            <field name="parent_id" ref="sports"></field>
+        </record>
+
+          <record id="sports_3" model="product.public.category">
+            <field name="name">Skating</field>
+            <field name="parent_id" ref="sports"></field>
+        </record>
+          <record id="sports_4" model="product.public.category">
+            <field name="name">cycling</field>
+            <field name="parent_id" ref="sports"></field>
+        </record>
+        <record id="sports_5" model="product.public.category">
+            <field name="name">Swimming</field>
+            <field name="parent_id" ref="sports"></field>
+        </record>
+          <record id="sports_6" model="product.public.category">
+            <field name="name">Tennis</field>
+            <field name="parent_id" ref="sports"></field>
+        </record>
+          <record id="sports_7" model="product.public.category">
+            <field name="name">Table Tennis</field>
+            <field name="parent_id" ref="sports"></field>
+        </record>
+        <record id="sports_8" model="product.public.category">
+            <field name="name">Camping and Hiking</field>
+            <field name="parent_id" ref="sports"></field>
+        </record>
+				<record id="sports_9" model="product.public.category">
+            <field name="name">Cricket</field>
+            <field name="parent_id" ref="sports"></field>
+        </record>
+        <!-- <record id="exercises_and_fitness" model="product.public.category">
+            <field name="name">Exercise and Fitness</field>
+            <field name="parent_id" ref="sports_and_books_root_category"></field>
+            <field name="image" type="base64" file="website_mega_menus/static/src/img/bk5.jpg"/>
+
+        </record> -->
+
+        <!-- <record id="exercises_and_fitness_1" model="product.public.category">
+            <field name="name">Gloves</field>
+            <field name="parent_id" ref="exercises_and_fitness"></field>
+        </record>
+        <record id="exercises_and_fitness_2" model="product.public.category">
+            <field name="name">AB Exercises</field>
+            <field name="parent_id" ref="exercises_and_fitness"></field>
+        </record>
+        <record id="exercises_and_fitness_3" model="product.public.category">
+            <field name="name">Yoga Mats</field>
+            <field name="parent_id" ref="exercises_and_fitness"></field>
+        </record>
+        <record id="exercises_and_fitness_4" model="product.public.category">
+            <field name="name">Home Gyms</field>
+            <field name="parent_id" ref="exercises_and_fitness"></field>
+        </record>
+        <record id="exercises_and_fitness_5" model="product.public.category">
+            <field name="name">Cardio Equipment</field>
+            <field name="parent_id" ref="exercises_and_fitness"></field>
+        </record> -->
+
+
+        <!--    ###############   mega menu ###################-->
+        <record id="mega_menu_electonics" model="website.menu">
+            <field name="name">Electronics</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">11</field>
+            <field name="website_id" ref="website.default_website"/>
+            <field name="is_mega_menu">True</field>
+            <field name="root_category" ref="electonics_root_category"/>
+            <field name="categories_displayed">all</field>
+            <field name="bg_image" type="base64" file="website_mega_menus/static/description/Electronics.png"></field>
+            <field name="top_menu_icon" type="base64" file="website_mega_menus/static/description/electronics_icon.png"></field>
+        </record>
+
+        <record id="mega_menu_clothing" model="website.menu">
+            <field name="name">Clothing</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">12</field>
+            <field name="website_id" ref="website.default_website"/>
+            <field name="is_mega_menu">True</field>
+            <field name="root_category" ref="clothing_root_category"/>
+            <field name="categories_displayed">all</field>
+            <field name="bg_image" type="base64" file="website_mega_menus/static/description/Clothing.png"></field>
+            <field name="top_menu_icon" type="base64" file="website_mega_menus/static/description/clothing_icon.png"></field>
+        </record>
+        <record id="mega_menu_sports_books" model="website.menu">
+            <field name="name">Sports &amp; Books</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">12</field>
+            <field name="website_id" ref="website.default_website"/>
+            <field name="is_mega_menu">True</field>
+            <field name="root_category" ref="sports_and_books_root_category"/>
+            <field name="categories_displayed">all</field>
+            <field name="bg_image" type="base64" file="website_mega_menus/static/description/Sports-And-All.png"></field>
+            <field name="top_menu_icon" type="base64" file="website_mega_menus/static/description/sports_icon.png"></field>
+        </record>
+
+    </data>
+</odoo>

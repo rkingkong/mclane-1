@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<odoo>
+    <data>  
+        <record id="website_banner_slider_config" model="ir.ui.view">
+            <field name="name">website.banner.config</field>
+            <field name="model">website.banner.config</field>
+            <field name="arch" type="xml">
+                <form string="Website Banner " class="oe_form_configuration">
+                   
+                    <group string="Website Banner Slider" col="4">
+                        <field name="website_banner_type"/>
+                        <field name="lang_flag"/>                        
+                    </group>
+                     <group  col="2">
+                        <field name="wk_banner_ids" widget="many2many_tags"/>
+                    </group >
+                    <footer>
+                        <button string="Apply" type="object" name="execute" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" type="button" name="cancel" special="cancel" class="oe_link"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_website_banner_slider_config" model="ir.actions.act_window">
+            <field name="name">Website banner Config</field>
+            <field name="res_model">website.banner.config</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+         <record id="webiste_webkul_addons_config" model="ir.ui.view">
+            <field name="name">Addons Setting</field>
+            <field name="model">webkul.website.addons</field>
+            <field name="inherit_id" ref="website_webkul_addons.config_webkul_website_addons_form"  />
+            <field name="arch" type="xml">
+                <xpath expr="//td[@name='module_website_banner_slider']" position="replace">
+                    <td>
+                        <button type="action" name="website_banner_slider.action_website_banner_slider_config" string="Configuration" class="oe_link oe_inline"></button>
+                    </td>
+                </xpath>  
+            </field>
+        </record>
+
+        <menuitem id="website_banners_settings" name= "Website Banners" parent="website_sale.menu_ecommerce_settings" sequence="3" action="website_banner_slider.website_banner_images_action_id"/>
+        
+    </data>
+</odoo>

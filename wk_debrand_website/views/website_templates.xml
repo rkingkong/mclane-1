@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : <https://store.webkul.com/license.html/> -->
+
+<odoo>
+    <template id="layout_footer_copyright" inherit_id="website.layout_footer_copyright">
+        <xpath expr="//div[@t-ignore='true']" position="replace"></xpath> 
+    </template>
+
+    <template id="wk_show_website_info_inherit" inherit_id="website.show_website_info">
+         <xpath expr="//div[@class='oe_structure']//section//h1[1]/small" position="replace"></xpath>
+         <xpath expr="//div[@class='oe_structure']//section//p[1]" position="replace"></xpath>
+    </template> 
+    
+    <template id="s_banner" inherit_id="website.s_banner">
+        <xpath expr="//img[@class='img-responsive']" position="attributes">
+            <attribute name="alt">Banner Image</attribute>
+            <attribute name="src">/website/static/src/img/library/gift.jpg</attribute>
+        </xpath>
+    </template>
+
+    <template id="s_text_image" inherit_id="website.s_text_image">
+        <xpath expr="//img[@class='img img-responsive pull-left mb16']" position="attributes">
+            <attribute name="alt">Text and image block</attribute>
+        </xpath>
+    </template>
+
+    <template id="s_image_text" inherit_id="website.s_image_text">
+        <xpath expr="//img[@class='img img-responsive center-block mb16']" position="attributes">
+            <attribute name="alt">Image and text block</attribute>
+        </xpath>
+    </template>
+
+    <template id="s_big_picture" inherit_id="website.s_big_picture">
+        <xpath expr="//img[@class='img img-responsive']" position="attributes">
+            <attribute name="alt">CMS - a big picture</attribute>
+        </xpath>
+    </template>
+
+     <template id="s_three_columns" inherit_id="website.s_three_columns">
+        <xpath expr="//img[@src='/web/image/website.library_image_11']" position="attributes">
+            <attribute name="alt">Sample 1 for three columns</attribute>
+        </xpath>
+         <xpath expr="//img[@src='/web/image/website.library_image_13']" position="attributes">
+            <attribute name="alt">Sample 2 for three columns</attribute>
+        </xpath>
+         <xpath expr="//img[@src='/web/image/website.library_image_07']" position="attributes">
+            <attribute name="alt">Sample 3 for three columns</attribute>
+        </xpath>
+    </template>
+
+    <template id="s_image_floating" inherit_id="website.s_image_floating">
+        <xpath expr="//img[@class='img img-rounded img-responsive']" position="attributes">
+            <attribute name="alt">CMS- Sample image floating</attribute>
+        </xpath>
+    </template>
+
+    <template id="s_button" inherit_id="website.s_button">
+        <xpath expr="//div[@class='col-md-9']" position="replace">
+            <div class="col-md-9">
+                <p class="mb0">
+                    Join us and make your company a better place.
+                </p>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="s_faq_collapse" inherit_id="website.s_faq_collapse">
+        <xpath expr="//section/div/div/div[1]" position="replace">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" data-toggle="collapse">
+                    <h4 class="panel-title">
+                        Which hardware does POS support?
+                    </h4>
+                </div>
+                <div class="panel-collapse collapse" role="tabpanel">
+                    <div class="panel-body">
+                        <p>
+                            POS is a web application that can run on any device that
+                            can display websites with little to no setup required.
+                        </p>
+                        <p>
+                            The Point of Sale works perfectly on any kind of touch enabled
+                            device, whether it's multi-touch tablets like an iPad or
+                            keyboardless resistive touchscreen terminals.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="s_parallax_slider" inherit_id="website.s_parallax_slider">
+        <xpath expr="//section[@class='parallax s_parallax_slider oe_custom_bg oe_img_bg']" position="replace"></xpath>
+    </template>
+</odoo>

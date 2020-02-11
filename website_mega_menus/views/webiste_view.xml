@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+        <record id="website_menu_form_view" model="ir.ui.view">
+            <field name="name">website.menu.form</field>
+            <field name="model">website.menu</field>
+            <field name="arch" type="xml">
+                <form string="Website Menu Settings">
+                    <sheet>
+                        <group col="4">
+                            <field name="sequence"/>
+                            <field name="website_id" options="{'no_create': True}"/>
+                            <field name="name"/>
+                            <field name="url"/>
+                            <field name="new_window"/>
+                            <field name="parent_id"/>
+                            <field name="is_mega_menu"/>
+                            <label for="root_category" strign="Root Category" attrs="{'invisible':[('is_mega_menu','=',False)]}"/>
+                            <div attrs="{'invisible':[('is_mega_menu','=',False)]}">
+                                <field name="root_category" class="oe_inline"/>
+                                <button string="Create Top Menu URL" name="create_url" type="object" class="oe_inline oe_highlight oe_edit_only" attrs="{'invisible':[('root_category','=',False)]}"/>
+                            </div>
+
+                            <field name="categories_displayed" attrs="{'invisible':[('is_mega_menu','=',False)]}"/>
+                        </group>
+                        <group attrs="{'invisible':[('categories_displayed','!=','selected')]}">
+                            <field name="selected_categories" nolabel="1" attrs="{'required':[('categories_displayed','=','selected')]}" widget="many2many_tags" domain="[('parent_id','=',root_category)]"/>
+                        </group>
+                        <group string="Images and Icons" col="4" attrs="{'invisible':[('is_mega_menu','=',False)]}">
+                           <field name="bg_image" options='{"size": [300, 700]}' widget="image" attrs="{'required':[('categories_displayed','=','selected')]}"/>
+                           <field name="top_menu_icon"  widget="image" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="mega_menu_tree" model="ir.ui.view">
+            <field name="name">website.menu.tree</field>
+            <field name="model">website.menu</field>
+            <field name="field_parent">child_id</field>
+            <field name="arch" type="xml">
+                <tree string="Website menu">
+                    <field name="sequence" widget="handle"/>
+                    <field name="website_id" options="{'no_create': True}"/>
+                    <field name="name"/>
+                    <field name="url"/>
+                    <field name="new_window"/>
+                    <field name="parent_id"/>
+                    <field name="is_mega_menu"/>
+                    <field name="root_category" attrs="{'invisible':[('is_mega_menu','=',False)]}" domain="[('child_id','!=',False)]"/>
+                    <field name="categories_displayed" attrs="{'invisible':[('is_mega_menu','=',False)]}"/>
+                    <field name="selected_categories" attrs="{'required':[('categories_displayed','=','selected')],'invisible':[('is_mega_menu','=',False)]}" widget="many2many_tags" domain="[('parent_id','=',root_category)]"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_website_mega_menus_id" model="ir.actions.act_window">
+            <field name="name">Website Menu</field>
+            <field name="res_model">website.menu</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('is_mega_menu', '=', True)]</field>
+            <field name="view_id" ref="mega_menu_tree"/>
+        </record>
+
+        <record id="mega_menu_tree_inherited" model="ir.ui.view">
+            <field name="name">website.menu.tree</field>
+            <field name="model">website.menu</field>
+            <field name="inherit_id" ref="website.menu_tree"/>
+            <field name="arch" type="xml">
+               <field name="parent_id" position="after">
+                    <button string="Add Mega Menu" name="show_mega_menu_form" type="object" class="oe_highlight"/>
+                </field>
+            </field>
+        </record>
+
+        <menuitem name="Menus"
+            id="action_website_menu_inherited"
+            action="website.action_website_menu"
+            parent="website.menu_website_global_configuration"
+            sequence="32"
+            groups="base.group_no_one"/>
+
+        <menuitem name="Mega Menus"
+            id="website_mega_menus_id"
+            action="action_website_mega_menus_id"
+            parent="website.menu_website_global_configuration"
+            sequence="33"
+            groups="base.group_no_one"/>
+
+
+
+
+    </data>
+ </odoo>

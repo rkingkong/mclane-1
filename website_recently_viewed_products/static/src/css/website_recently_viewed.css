@@ -1,0 +1,38 @@
+.wk_recently_view_container {
+    border: 1px solid #CCCCCC;
+    border-top: 3px solid #b7b7b7;
+    height: auto;
+    margin-bottom: 100px;
+    padding: 0px;
+}
+
+.oe_product_image {
+    margin: auto;
+}
+
+#owl-recentaly-viewed .item {
+    display: block;
+    cursor: pointer;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    text-align: center;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    border-right: 1px solid #CCCCCC;
+}
+
+#owl-recentaly-viewed .item:hover {
+    color: #0000ff;
+}
+
+.owl-pagination {
+    background-color: #CCCCCC;
+}
+
+.item form {
+    padding: 5px;
+}

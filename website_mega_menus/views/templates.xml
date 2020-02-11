@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+	<data>
+    <template id="assets_frontend" name="website guest aassets_frontend" inherit_id="website.assets_frontend">
+		<xpath expr="." position="inside">
+            <link rel='stylesheet' href='/website_mega_menus/static/src/css/mega_menu.css'/>
+            <link rel='stylesheet' href='/website_mega_menus/static/src/less/main.less'/>
+            <script type="text/javascript" src="/website_mega_menus/static/src/js/mega_menu.js"></script>
+
+        </xpath>
+	</template>
+<!-- and  -->
+
+  <template id="mega_menu_wk" inherit_id="website.submenu">
+    <xpath expr="//li[1]" position="replace">
+    <t t-if="request.env['ir.default'].sudo().get('mega.menu.config', 'mega_menu_type')!='fly_out' or not submenu.is_mega_menu">
+       <li t-if="not submenu.child_id  if request.env['ir.default'].sudo().get('mega.menu.config', 'mega_menu_type')!='fly_out' else not submenu.is_mega_menu and not submenu.child_id" t-att-id="'id_%s'%(submenu.id)" t-att-class="
+        'dropdown active' if submenu.clean_url() and unslug_url(request.httprequest.path) == unslug_url(submenu.clean_url()) and not submenu.is_mega_menu else 'dropdown'
+        ">
+						<t t-set="href" t-value="submenu.clean_url() if not submenu.is_mega_menu else '#mega'" />
+						<t t-set="href" t-value="'/shop/category/{}'.format(slug(submenu.root_category)) if not website.get_public_categories(submenu) and href =='#mega' and submenu.root_category else href" />
+            <a class="dropbtn" t-att-href="href" t-ignore="true" t-att-target="'_blank' if submenu.new_window else None" t-att-color="request.env['ir.default'].sudo().get('mega.menu.config', 'root_categ_color') or '212121'" t-att-mega_menu="submenu.is_mega_menu">
+                <span t-if="submenu.top_menu_icon" t-field="submenu.top_menu_icon" t-options="{'widget': 'image', 'class': 'img-rounded shadow o_alternative_product' }"/>
+                <span t-field="submenu.name"/>
+								<span t-if="submenu.is_mega_menu" class="icon-mobile-menu"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+            </a>
+
+            <div t-if="submenu.is_mega_menu and website.get_public_categories(submenu) and submenu.root_category" class="dropdown-content hover_mega_menu">
+                <t t-set="header_color" t-value="request.env['ir.default'].sudo().get('mega.menu.config', 'mega_menu_header_color')"/>
+                <t t-set="header_bg_color" t-value="request.env['ir.default'].sudo().get('mega.menu.config', 'mega_menu_header_bg')"/>
+                <t t-set="body_color" t-value="request.env['ir.default'].sudo().get('mega.menu.config', 'mega_menu_body_color')"/>
+                <t t-set="body_bg" t-value="request.env['ir.default'].sudo().get('mega.menu.config', 'mega_menu_body_bg')"/>
+                <div class="header" t-if="request.env['ir.default'].sudo().get('mega.menu.config', 'display_text_header')" t-attf-style="background-color:##{header_bg_color or '9E9E9E'}; color:##{header_color or '212121'}">
+
+												<strong><t t-esc="request.env['ir.default'].sudo().get('mega.menu.config', 'mega_menu_header_text')"/></strong>
+
+                </div>
+                <t t-set="url" t-value="none"/>
+                <t t-if="submenu.bg_image"  t-set="url" t-value="request.website.image_url(submenu, 'bg_image')"/>
+                <div class="row" t-attf-style="background-color:##{body_bg or 'FAFAFA'};color:##{body_color or '212121'};background-image: url(#{url})">
+                    <t t-set="categories" t-value="website.get_public_categories(submenu)"/>
+                    <t t-foreach="categories" t-as="c">
+                        <t t-call="website_mega_menus.categories_recursive"/>
+                    </t>
+                </div>
+            </div>
+        </li>
+
+    </t>
+    </xpath>
+  </template>
+
+    <template id="categories_recursive_child" name="Category Child list">
+        <div class="levelclass" t-att-level="level">
+            <span class="bullet-point fa fa-angle-double-right"> </span><a t-attf-href="/shop/category/#{slug(c1)}" t-attf-style="color:##{body_color or '212121'}"><t t-esc="c1.name" style="font-size:13px;"/> </a>
+        </div>
+
+        <t t-if="c1.child_id">
+            <t t-set="level" t-value="level+1"/>
+            <t t-foreach="c1.child_id" t-as="c2">
+                <t t-set="c1" t-value="c2"/>
+                <div>
+                </div>
+                    <t t-call="website_mega_menus.categories_recursive_child"/>
+            </t>
+        </t>
+    </template>
+
+   <template id="categories_recursive" name="Category list">
+          <div class="col-md-3">
+            <t  t-set="root_color" t-value="request.env['ir.default'].sudo().get('mega.menu.config', 'root_categ_color')"/>
+            <strong>
+                <span t-if="c.image_small and c.child_id" t-field="c.image_small" class="mega_cat_image" t-options="{'widget': 'image'}" ></span>
+                <a t-attf-href="/shop/category/#{slug(c)}"  style="padding:5px 0px; font-size:16px;" t-attf-style="color:##{root_color or '212121'}">
+
+                    <t t-esc="c.name"/>
+                </a></strong>
+            <div t-if="c.child_id">
+                <t  t-foreach="c.child_id" t-as="c1">
+                    <t t-set="level" t-value="0"/>
+                    <t t-call="website_mega_menus.categories_recursive_child"/>
+                </t>
+            </div>
+          </div>
+    </template>
+
+        <template id="fly_out_mega_menu" name="fly_out_mega_menu">
+            <li t-if="submenu.is_mega_menu and submenu.root_category or not submenu.is_mega_menu" t-attf-class="dropdown #{
+                (submenu.clean_url() and submenu.clean_url() != '/' and any([request.httprequest.path == child.url for child in submenu.child_id if child.url]) or
+                (submenu.clean_url() and request.httprequest.path == submenu.clean_url())) and 'active'
+                }">
+                <t t-set="root_color" t-value="request.env['ir.default'].sudo().get('mega.menu.config', 'root_categ_color')"/>
+
+                <a class="dropdown-toggle" t-attf-style="color:##{root_color or '212121'}" data-toggle="dropdown" href="#">
+                    <span t-field="submenu.name"/> <span class="caret" t-ignore="true"></span>
+                </a>
+                <t t-set="categories" t-value="website.get_public_categories(submenu)"/>
+                <t  t-if="submenu.bg_image" t-set="url_img" t-value="request.website.image_url(submenu, 'bg_image')" />
+                <ul  t-if="categories" t-attf-style="background-image:url(#{url_img});" class="dropdown-menu" role="menu">
+                    <t t-foreach="categories" t-as="c">
+                        <t t-call="website_mega_menus.categories_recursive"/>
+                    </t>
+                </ul>
+            </li>
+        </template>
+
+        <template id="fly_out_mega_menu_button" inherit_id="portal.frontend_layout">
+            <xpath expr="//header//div[@class='navbar-header']" position="inside">
+                <t t-if="request.env['ir.default'].sudo().get('mega.menu.config', 'mega_menu_type')=='fly_out'">
+                    <div class="clear-image">
+                        <a href="#" id="fly_out_view_open">
+                            <strong>Categories</strong>
+                            <span class="fa fa-chevron-down" />
+                        </a>
+                    </div>
+                    <div id="fly_out_view">
+                        <h4 class="heading"><t t-esc="request.env['ir.default'].sudo().get('mega.menu.config', 'mega_menu_header_text')" /></h4>
+                        <t t-set="menus" t-value="request.website.create_fly_out_menu()" />
+                        <ul id="dropdown_ul">
+                            <t t-foreach="menus" t-as="submenu">
+                                <t t-call="website_mega_menus.fly_out_mega_menu" />
+                            </t>
+                        </ul>
+                    </div>
+                </t>
+            </xpath>
+        </template>
+
+				<template id="mega_menu_wk_li2" inherit_id="website.submenu" active="False">
+					<xpath expr="//li[@t-if='submenu.child_id.filtered(lambda menu: menu.is_visible)']" position="attributes">
+						<t t-if="request.env['ir.default'].sudo().get('mega.menu.config', 'mega_menu_type')=='fly_out'">
+							<attribute name="t-if">submenu.child_id.filtered(lambda menu: menu.is_visible and not menu.is_mega_menu)</attribute>
+						</t>
+					</xpath>
+				</template>
+
+    </data>
+</odoo>

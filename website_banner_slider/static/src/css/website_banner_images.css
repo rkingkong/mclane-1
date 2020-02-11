@@ -1,0 +1,7 @@
+
+#owl-pagination,#owl-gallery{
+    margin-top: 20px;
+}
+.owl-carousel .owl-item img {
+    max-height: 400px;
+}

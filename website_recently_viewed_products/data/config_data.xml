@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <function id="set_recently_maximum_product"
+                  model="ir.default"
+                  name="set" 
+                  eval="('res.config.settings', 'wk_maximum_product', 10)"
+        />
+
+        <function id="set_recently_show_product"
+                  model="ir.default"
+                  name="set" 
+                  eval="('res.config.settings', 'wk_show_product', 5)"
+        />
+    </data>
+</odoo>

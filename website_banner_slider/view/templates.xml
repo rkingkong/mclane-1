@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<odoo>
+    <data noupdate="0">
+        <template id="assets_frontend" inherit_id="website.assets_frontend" name="Website Banner Slider">
+            <xpath expr="." position="inside">
+
+                <script type="text/javascript" src="/website_banner_slider/static/src/js/owl-carousel/owl.carousel.js"></script>
+                <script type="text/javascript" src="/website_banner_slider/static/src/js/website_banner_images.js"></script>
+                <link rel='stylesheet' href='/website_banner_slider/static/src/js/owl-carousel/owl.carousel.css'/>
+                <link rel='stylesheet' href='/website_banner_slider/static/src/js/owl-carousel/owl.theme.css'/>
+                <link rel='stylesheet' href='/website_banner_slider/static/src/js/owl-carousel/owl.theme.gallery.css'/>
+                
+                <link rel='stylesheet' href='/website_banner_slider/static/src/js/owl-carousel/owl.transitions.css'/>
+                
+                <link rel='stylesheet' href='/website_banner_slider/static/src/css/website_banner_images.css'/>
+            </xpath>
+        </template>
+
+
+        <record id="homepage_inherit" model="ir.ui.view">
+            <field name="name">Home redazzled</field>
+            <field name="type">qweb</field>
+            <field name="key">website.homepage</field>
+            <field name="inherit_id" ref="website.homepage" />
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='wrap']" position="before">
+                    <t t-set="banner_images" t-value="request.website.get_website_banner_images()"/>
+                    <t t-set="banner_type" t-value="request.website.get_website_banner_type()"/>
+                    
+                    <!-- Banner type Default -->
+                    <div class="container" t-if="banner_type =='default'">
+                        <div id ="owl-pagination" class="owl-carousel owl-theme">
+                            <t t-foreach="banner_images" t-as="image_id">
+                                <div>
+                                    <a t-attf-href="#{image_id.link if image_id.link else '#'}" >
+                                        <img  class="img img-responsive"  t-att-src="website.image_url(image_id, 'image')" t-att-alt="image_id.name" />
+                                    </a>
+                            
+                                </div>
+                            </t> 
+                        </div>
+                    </div>
+                    <!-- Banner gallery -->
+                    <div class="container gallery" t-if="banner_type =='gallery'">
+                        <div id ="owl-gallery" class="owl-carousel owl-loaded">
+                            <t t-set="counter" t-value="0"/>
+                            <t t-foreach="banner_images" t-as="image_id">
+                                <div>
+                                    <a t-attf-href="#{image_id.link if image_id.link else '#'}" >
+                                        <img  class="img img-responsive"  t-att-src="website.image_url(image_id, 'image')" t-att-alt="image_id.name" />
+                                    </a>
+                                </div>
+                            </t>
+                        </div>
+                        <div id="custom-nav"  class="owl-nav">
+                            <div class="owl-prev"><span></span></div>
+                            <!-- <div id='custom' class='owl-dots'>
+                                <t t-foreach="banner_images" t-as="image_id">
+                                    <div class="owl-dot">
+                                       <img  class="img img-responsive"  t-att-src="website.image_url(image_id, 'image')" t-att-alt="image_id.name" />
+                                    </div>
+                                </t>
+                                
+                            </div> -->
+                            <div class="owl-next"><span></span></div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

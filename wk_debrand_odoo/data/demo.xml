@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : <https://store.webkul.com/license.html/> -->
+
+<odoo>
+    <data noupdate="1">
+        <function id="debranding_wk_favicon" model="ir.default" name="set" eval="('res.config.settings', 'title_brand', 'WEBKUL')"/>
+        <function id="debranding_odoo_text_replacement" model="ir.default" name="set" eval="('res.config.settings', 'odoo_text_replacement', 'Software')"/>
+        <function id="debranding_wk_favicon" model="ir.default" name="set_wk_favicon" eval="('res.config.settings', 'wk_favicon')"/>
+    </data>
+</odoo>
