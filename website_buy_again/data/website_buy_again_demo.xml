@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>;) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+
+<odoo >
+  <data noupdate="1">
+
+      <record id="buy_again_sale_order_1" model="sale.order">
+          <field name="name">Test/0011</field>
+          <field name="partner_id" ref="base.partner_root"/>
+          <field name="partner_invoice_id" ref="base.res_partner_address_25"/>
+          <field name="partner_shipping_id" ref="base.res_partner_address_25"/>
+          <field name="user_id" ref="base.user_demo"/>
+          <field name="state">sale</field>
+          <field name="pricelist_id" ref="product.list0"/>
+          <field name="team_id" ref="sales_team.salesteam_website_sales"/>
+          <field name="date_order" eval="(datetime.now()-relativedelta(days=7)).strftime('%Y-%m-%d %H:%M:%S')"/>
+          <field name="confirmation_date" eval="(datetime.now()-relativedelta(days=7)).strftime('%Y-%m-%d %H:%M:%S')"/>
+      </record>
+
+      <record id="buy_again_sale_order_line_1" model="sale.order.line">
+          <field name="order_id" ref="buy_again_sale_order_1"/>
+          <field name="name">Drawer</field>
+          <field name="product_id" ref="product.product_product_27"/>
+          <field name="product_uom_qty">2</field>
+          <field name="product_uom" ref="product.product_uom_unit"/>
+          <field name="price_unit">3645.00</field>
+      </record>
+
+      <record id="buy_again_sale_order_line_2" model="sale.order.line">
+          <field name="order_id" ref="buy_again_sale_order_1"/>
+          <field name="name">Mouse, Wireless</field>
+          <field name="product_id" ref="product.product_product_12"/>
+          <field name="product_uom_qty">2</field>
+          <field name="product_uom" ref="product.product_uom_unit"/>
+          <field name="price_unit">12.50</field>
+      </record>
+
+    <record id="buy_again_config_demo1" model="buy.again.config">
+        <field name="name">Demo-Setting</field>
+        <field name="website_id" ref="website.default_website"></field>
+        <field name="from_date">05/07/2014 12:37:51</field>
+        <field name="product_limit">8</field>
+        <field name="menu_buy_again">Buy Again</field>
+        <field name="set_active">True</field>
+    </record>
+  </data>
+</odoo>

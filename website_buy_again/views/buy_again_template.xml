@@ -1,0 +1,48 @@
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>;) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+  <template id="assets_frontend" name="Buy Again" inherit_id="website.assets_frontend">
+      <xpath expr="." position="inside">
+          <link rel="stylesheet" type="text/less" href="/website_buy_again/static/src/less/website_buy_again.less"/>
+      </xpath>
+  </template>
+
+    <template id="header" inherit_id="website.layout" name="Header Buy again">
+        <xpath expr="//header//ul[@id='top_menu']/li" position="inside">
+            <li class="nav-item" t-ignore="true" t-if="not user_id._is_public()">
+                <a role="menuitem" href="/buy_again" class="nav-link ">
+                  <t t-set="menu_buy" t-value="request.env['buy.again.config'].search([('set_active','=',True),('website_id','=',request.website.id)], limit=1)"/>
+                    <t t-if="menu_buy">
+                      <t t-esc="menu_buy.menu_buy_again"/>
+                    </t>
+                    <t t-else="1"> Buy Again</t>
+                </a>
+            </li>
+        </xpath>
+    </template>
+
+    <template id="last_order" inherit_id="website_sale.product" name="Lable Last order">
+      <xpath expr="//section/div" position="before">
+        <t t-if="not user_id._is_public()">
+          <t t-set="temp" t-value='True'/>
+              <t t-set="orders" t-value="[id for id in request.env.user.partner_id.sale_order_ids]"/>
+                  <t t-foreach='orders' t-as="order">
+                      <t t-foreach='order.order_line' t-as="ol">
+                          <t t-if="ol.product_id.product_tmpl_id.id == product.id">
+                            <t t-if="temp == True">
+                              <div id="last_order_label">
+                                <div class="panel" id="order_label_text">
+                                    <div>Product purchased on <span class="text-muted o_thread_date" t-esc="datetime.datetime.strptime(order.date_order, '%Y-%m-%d %H:%M:%S').strftime('%B %d, %Y')"/></div>
+                                    <div id="label_date">  <a role="button" t-attf-href="/my/orders/{{order.id}}?{{keep_query()}}">View Your Order</a></div>
+                                  <t t-set="temp" t-value="False"/>
+                                </div>
+                              </div>
+                            </t>
+                          </t>
+                      </t>
+                  </t>
+        </t>
+      </xpath>
+    </template>
+</odoo>
