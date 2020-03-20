@@ -109,7 +109,7 @@
         <template id="fly_out_mega_menu_button" inherit_id="portal.frontend_layout">
             <xpath expr="//header//div[@class='navbar-header']" position="inside">
                 <t t-if="request.env['ir.default'].sudo().get('mega.menu.config', 'mega_menu_type')=='fly_out'">
-                    <div class="clear-image" style="padding-top: 20px !important;">
+                    <div class="clear-image" style="padding-top: 50px !important;">
                         <a href="#" id="fly_out_view_open">
                             <span class="fa fa-bars" />
                         </a>

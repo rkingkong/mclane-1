@@ -40,6 +40,7 @@ odoo.define('website_mega_menus.website_mega_menus', function (require) {
             
             $("#dropdown_ul .dropdown").hover(function(){
                $("#dropdown_ul .dropdown").css('background-color',"inherit")
+               $("#dropdown_ul .dropdown").find('span').css("color","inherit")
                $(this).css("background-color", "#007fff");
                $(this).find('span').css("color", "white");
             }, function(){
