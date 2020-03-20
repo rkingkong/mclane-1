@@ -39,28 +39,43 @@ odoo.define('website_mega_menus.website_mega_menus', function (require) {
             });
             
             $("#dropdown_ul .dropdown").hover(function(){
+               $("#dropdown_ul .dropdown").css('background-color',"inherit")
                $(this).css("background-color", "#007fff");
+               $(this).find('span').css("color", "white");
             }, function(){
 
-               $(this).css("background-color", "white");
+               $(this).css("background-color", "inherit");
+               $(this).find('span').css("color", "inherit");
          
             });
 
             $("#dropdown_ul .col-md-3 a").hover(function(){
                $(this).css("background-color", "#007fff");
+               $(this).css("color", "white");
+               $("#dropdown_ul .dropdown").css('background-color',"inherit")
+               $("#dropdown_ul .dropdown").find('span').css("color","inherit")
             }, function(){
 
-               $(this).css("background-color", "white");
+               $(this).css("background-color", "inherit");
+               $(this).css("color", "inherit");
+               $("#dropdown_ul .dropdown").css('background-color',"inherit")
+               $("#dropdown_ul .dropdown").find('span').css("color","inherit")
          
             });
 
             $("#dropdown_ul .levelclass").hover(function(){
+               $("#dropdown_ul .dropdown").css('background-color',"inherit")
+               $("#dropdown_ul .dropdown").find('span').css("color","inherit")
                $(this).css("background-color", "#007fff");
                $(this).find('a').css("background-color", "#007fff");
+               $(this).find('a').css("color", "white");
             }, function(){
 
-               $(this).css("background-color", "white");
-               $(this).find('a').css("background-color", "white");
+               $("#dropdown_ul .dropdown").css('background-color',"inherit")
+               $("#dropdown_ul .dropdown").find('span').css("color","inherit")
+               $(this).css("background-color", "inherit");
+               $(this).find('a').css("background-color", "inherit");
+               $(this).find('a').css("color", "inherit");
          
             });
             $("#top_menu .dropdown").hover(function(){
