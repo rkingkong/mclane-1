@@ -60,6 +60,10 @@
 .icon-mobile-menu{
   display: none;
 }
+.levelclass a{
+  text-decoration: none !important;
+}
+
 .levelclass span{
   -webkit-transition: margin-left 0.3s linear;
   -moz-transition: margin-left 0.3s linear;
