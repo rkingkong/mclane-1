@@ -109,12 +109,12 @@
         <template id="fly_out_mega_menu_button" inherit_id="portal.frontend_layout">
             <xpath expr="//header//div[@class='navbar-header']" position="inside">
                 <t t-if="request.env['ir.default'].sudo().get('mega.menu.config', 'mega_menu_type')=='fly_out'">
-                    <div class="clear-image" style="padding-top: 50px !important;">
+                    <div class="clear-image" style="padding-top: 100px !important; position: absolute;">
                         <a href="#" id="fly_out_view_open">
                             <span class="fa fa-bars" />
                         </a>
                     </div>
-                    <div id="fly_out_view">
+                    <div id="fly_out_view" style="margin-top: 125px !important; position: absolute;">
                         <h4 class="heading"><t t-esc="request.env['ir.default'].sudo().get('mega.menu.config', 'mega_menu_header_text')" /></h4>
                         <t t-set="menus" t-value="request.website.create_fly_out_menu()" />
                         <ul id="dropdown_ul">
