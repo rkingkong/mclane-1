@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+       <record id="seq_csv_import" model="ir.sequence">
+            <field name="name">Csv Import</field>
+            <field name="code">wk.import.csv</field>
+            <field name="prefix">IM-</field>
+            <field name="padding">5</field>
+            <field name="Import" eval="False"/>
+        </record>
+         <record id="seq_csv_history" model="ir.sequence">
+            <field name="name">Csv History</field>
+            <field name="code">wk.import.history</field>
+            <field name="prefix">HIS-</field>
+            <field name="padding">5</field>
+            <field name="History" eval="False"/>
+        </record>
+
+    </data>
+</odoo>
