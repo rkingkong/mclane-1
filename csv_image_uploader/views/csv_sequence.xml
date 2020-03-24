@@ -7,14 +7,14 @@
             <field name="code">wk.import.csv</field>
             <field name="prefix">IM-</field>
             <field name="padding">5</field>
-            <field name="company_id" eval="False"/>
+            <field name="Import" eval="False"/>
         </record>
          <record id="seq_csv_history" model="ir.sequence">
             <field name="name">Csv History</field>
             <field name="code">wk.import.history</field>
             <field name="prefix">HIS-</field>
             <field name="padding">5</field>
-            <field name="company_id" eval="False"/>
+            <field name="History" eval="False"/>
         </record>
 
     </data>

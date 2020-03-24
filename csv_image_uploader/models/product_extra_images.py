@@ -14,14 +14,13 @@
 # If not, see <https://store.webkul.com/license.html/>
 #################################################################################
 
+import odoo
 import logging
+from odoo.exceptions import UserError, Warning
+_logger = logging.getLogger(__name__)
+from odoo import api, fields, models, _
 import ast
 import os
-from odoo.exceptions import UserError, Warning
-from odoo import api, fields, models, _
-
-_logger = logging.getLogger(__name__)
-
 
 class wk_import_csv(models.Model):
     _inherit = "wk.import.csv"
@@ -78,8 +77,7 @@ class wk_import_csv(models.Model):
                         res['msg'] = e
                 else:
                     try:
-                        values['product_tmpl_id'] = record.id
-                        name = values.get('name')
+                        values['product_tmpl_id'] = record.product_tmpl_id.id
                         res['obj'] = self.env['product.image'].create(values)
                         res['status'] = True
                         res['msg'] = name + ' updated successfully.'

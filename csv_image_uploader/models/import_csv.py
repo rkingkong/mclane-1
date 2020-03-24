@@ -14,7 +14,8 @@
 # If not, see <https://store.webkul.com/license.html/>
 #################################################################################
 
-import logging
+from odoo import api, fields, models, _
+from odoo.exceptions import UserError,ValidationError
 import base64
 import csv
 import io
@@ -22,20 +23,12 @@ import os
 import werkzeug
 import zipfile
 from urllib import request
-from urllib.parse import urlparse
-from odoo import api, fields, models, _
-from odoo.exceptions import UserError, ValidationError
+import logging
 _logger = logging.getLogger(__name__)
 try:
     from PIL import Image
 except ImportError:
-    _logger.warning(
-        'Python Imaging not installed, you can use only .JPG pictures !')
-
-opener = request.build_opener()
-opener.addheaders = [('User-agent', 'Mozilla/5.0')]
-request.install_opener(opener)
-
+    _logger.warning('Python Imaging not installed, you can use only .JPG pictures !')
 
 class WkImportCsv(models.Model):
     _name = "wk.import.csv"
@@ -101,10 +94,8 @@ class WkImportCsv(models.Model):
         url = False
         path = os.path.abspath(__file__ + "/../../")
         if image.startswith('https://') or image.startswith('http://'):
-            img = urlparse(image).path
-            ext = os.path.splitext(img)[1]
-            request.urlretrieve(image, path + '1' + ext)
-            image = path + '1' + ext
+            request.urlretrieve(image, path+'1.png')
+            image = path+'1.png'
             url = True
         file_name = werkzeug.url_unquote(image)
         try:
@@ -112,11 +103,10 @@ class WkImportCsv(models.Model):
                 result['encoded_string'] = base64.b64encode(image_file.read())
                 result['status'] = True
         except Exception as e:
-            _logger.info("Exception %r", e)
-            result['encoded_string'] = "Image Not Found"
+            _logger.info("Exception %r",e)
+            result['encoded_string'] ="Image Not Found"
         if url:
-            os.remove(path + '1'+ext)
-        _logger.info('===result=====%r',result)
+            os.remove(path+'1.png')
         return result
 
 
@@ -132,8 +122,8 @@ class WkImportCsv(models.Model):
         
 
     @api.multi
-    def read_file(self, file, path):
-        path_file = path + file
+    def read_file(self,file,path):
+        path_file = path+file
         csv_file = open(path_file)
         reader = csv.DictReader(csv_file)
         return list(reader)
