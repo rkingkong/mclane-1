@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_website_buy_now,website_buy_now,model_res_partner,,1,1,1,1

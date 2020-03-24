@@ -14,7 +14,10 @@
 # If not, see <https://store.webkul.com/license.html/>
 ##########################################################################
 from odoo import api, models, fields, tools, _
+from odoo.http import request
 
+import logging
+_logger = logging.getLogger(__name__)
 
 class Website(models.Model):
     _inherit = 'website'
@@ -28,3 +31,22 @@ class Website(models.Model):
         if number:
         	return number
         return 0
+
+    @api.model
+    def viewed_product(self):
+        return self.get_viewed_products()
+
+    @api.model
+    def get_viewed_products(self):
+        user_obj, viewed_product = request.env['res.users'], []
+        default_context = dict(request.env.context)
+        pricelist = request.website.get_current_pricelist()
+        if not default_context.get('pricelist'):
+            default_context['pricelist'] = pricelist.id
+
+        user_viewed_products = user_obj.with_context(default_context).browse(request.uid).recently_viewed_products
+
+        for view in user_viewed_products:
+            viewed_product.append(view.product_id)
+
+        return viewed_product
