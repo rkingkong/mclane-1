@@ -19,7 +19,7 @@ odoo.define('website_mega_menus.website_mega_menus', function (require) {
             $('#fly_out_view_open, #fly_out_view .dropdown-menu')
               .on('click', fly_out_view_open)
               .hover(function(e){
-                var width = window.innerWidth;
+               var width = window.innerWidth;
                if (width > 767)
                 {
                   fly_out_view_open(e);
@@ -37,7 +37,48 @@ odoo.define('website_mega_menus.website_mega_menus', function (require) {
                 var level = $(this).attr('level')
                 $(this).css({'padding-left':6*level+'%'})
             });
+            
+            $("#dropdown_ul .dropdown").hover(function(){
+               $("#dropdown_ul .dropdown").css('background-color',"inherit")
+               $("#dropdown_ul .dropdown").find('span').css("color","inherit")
+               $(this).css("background-color", "#007fff");
+               $(this).find('span').css("color", "white");
+            }, function(){
 
+               $(this).css("background-color", "inherit");
+               $(this).find('span').css("color", "inherit");
+         
+            });
+
+            $("#dropdown_ul .col-md-3 a").hover(function(){
+               $(this).css("background-color", "#007fff");
+               $(this).css("color", "white");
+               $("#dropdown_ul .dropdown").css('background-color',"inherit")
+               $("#dropdown_ul .dropdown").find('span').css("color","inherit")
+            }, function(){
+
+               $(this).css("background-color", "inherit");
+               $(this).css("color", "inherit");
+               $("#dropdown_ul .dropdown").css('background-color',"inherit")
+               $("#dropdown_ul .dropdown").find('span').css("color","inherit")
+         
+            });
+
+            $("#dropdown_ul .levelclass").hover(function(){
+               $("#dropdown_ul .dropdown").css('background-color',"inherit")
+               $("#dropdown_ul .dropdown").find('span').css("color","inherit")
+               $(this).css("background-color", "#007fff");
+               $(this).find('a').css("background-color", "#007fff");
+               $(this).find('a').css("color", "white");
+            }, function(){
+
+               $("#dropdown_ul .dropdown").css('background-color',"inherit")
+               $("#dropdown_ul .dropdown").find('span').css("color","inherit")
+               $(this).css("background-color", "inherit");
+               $(this).find('a').css("background-color", "inherit");
+               $(this).find('a').css("color", "inherit");
+         
+            });
             $("#top_menu .dropdown").hover(function(){
                var color = $(this).find('.dropbtn').attr('color')
                var mega_menu = $(this).find('.dropbtn').attr('mega_menu')

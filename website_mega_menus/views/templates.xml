@@ -54,7 +54,7 @@
 
     <template id="categories_recursive_child" name="Category Child list">
         <div class="levelclass" t-att-level="level">
-            <span class="bullet-point fa fa-angle-double-right"> </span><a t-attf-href="/shop/category/#{slug(c1)}" t-attf-style="color:##{body_color or '212121'}"><t t-esc="c1.name" style="font-size:13px;"/> </a>
+            <a t-attf-href="/shop/category/#{slug(c1)}"><t t-esc="c1.name" style="font-size:13px;"/> </a>
         </div>
 
         <t t-if="c1.child_id">
@@ -109,13 +109,12 @@
         <template id="fly_out_mega_menu_button" inherit_id="portal.frontend_layout">
             <xpath expr="//header//div[@class='navbar-header']" position="inside">
                 <t t-if="request.env['ir.default'].sudo().get('mega.menu.config', 'mega_menu_type')=='fly_out'">
-                    <div class="clear-image">
+                    <div class="clear-image" style="padding-top: 100px !important; position: absolute;">
                         <a href="#" id="fly_out_view_open">
-                            <strong>Categories</strong>
-                            <span class="fa fa-chevron-down" />
+                            <span class="fa fa-bars" />
                         </a>
                     </div>
-                    <div id="fly_out_view">
+                    <div id="fly_out_view" style="margin-top: 125px !important; position: absolute;">
                         <h4 class="heading"><t t-esc="request.env['ir.default'].sudo().get('mega.menu.config', 'mega_menu_header_text')" /></h4>
                         <t t-set="menus" t-value="request.website.create_fly_out_menu()" />
                         <ul id="dropdown_ul">
