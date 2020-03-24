@@ -14,16 +14,17 @@
 # If not, see <https://store.webkul.com/license.html/>
 #################################################################################
 
+import odoo
 import logging
+from odoo.exceptions import UserError, Warning
+_logger = logging.getLogger(__name__)
+from odoo import api, fields, models, _
 import ast
 import os
-from odoo.exceptions import UserError, Warning
-from odoo import api, fields, models, _
-_logger = logging.getLogger(__name__)
-
 
 class wk_import_csv(models.Model):
     _inherit = "wk.import.csv"
+
 
     @api.model
     def _get_csv_import_model(self):
@@ -31,26 +32,22 @@ class wk_import_csv(models.Model):
         csv_model.append(['product.product', 'Product with Main Image'])
         return csv_model
 
+
     @api.model
     def product_product_validate_values(self,values):
         msg = ""
-        res = {'status': False, 'msg': 'Product Not Found'}
+        res = {'status':False,'msg':'Product Not Found'}
+        if 'image_status' in values:
+            msg = values.get('id') + values.get('image_status')
+            values.pop('image_status')
         if values.get('id'):
             record_obj = self.env['ir.model.data'].xmlid_to_object(values.get('id'))
             if record_obj:
                 try:
                     product_id = values.pop('id')
-                    if 'image_status' in values:
-                        msg = product_id + ' ' + values.get('image_status')
-                        res['msg'] = msg
-                    else:
-                        if not values.get('name'):
-                            values.pop('name')
-                        if not values.get('default_code'):
-                            values.pop('default_code')
-                        record_obj.write(values)
-                        res['status'] = True
-                        res['msg'] = product_id + ' updated successfully.'
+                    record_obj.write(values)
+                    res['status'] = True
+                    res['msg'] = product_id + ' updated successfully.'
                 except Exception as e:
                     _logger.info('=======%r',e)
                     res['msg'] = e
@@ -59,15 +56,9 @@ class wk_import_csv(models.Model):
             if record:
                 try:
                     default_code = values.pop('default_code')
-                    if 'image_status' in values:
-                        msg = default_code + ' ' + values.get('image_status')
-                        res['msg'] = msg
-                    else:
-                        if not values.get('name'):
-                            values.pop('name')
-                        record.write(values)
-                        res['status'] = True
-                        res['msg'] = default_code + ' updated successfully.'
+                    record.write(values)
+                    res['status'] = True
+                    res['msg'] = default_code + ' updated successfully.'
                 except Exception as e:
                     _logger.info('=======%r',e)
                     res['msg'] = e

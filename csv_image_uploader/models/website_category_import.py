@@ -58,24 +58,21 @@ class wk_import_csv(models.Model):
         res = {'status':False,'msg':'Website Category Id Not Found'}
         if values.get('id'):
             if 'image_status' in values:
-                res['msg'] = values.get('image_status')
+                msg = values.get('id') + values.get('image_status')
                 values.pop('image_status')
             else:
                 record_obj = self.env['ir.model.data'].xmlid_to_object(values.get('id'))
-                if record_obj:
-                    try:
-                        category_id = values.pop('id')
-                        if not values.get('name'):
-                            values.pop('name')
-                        record_obj.write(values)
-                        res['status'] = True
-                        res['msg'] = category_id + ' updated successfully.'
-                    except Exception as e:
-                        _logger.info('=======%r',e)
-                        res['msg'] = e
+                try:
+                    category_id = values.pop('id')
+                    record_obj.write(values)
+                    res['status'] = True
+                    res['msg'] = category_id + ' updated successfully.'
+                except Exception as e:
+                    _logger.info('=======%r',e)
+                    res['msg'] = e
         else:
-            res['msg'] = "Website Category Id Not Found in CSV "
-        return res
+            msg = "Website Category Id Not Found"
+        return msg
 
     @api.multi
     def product_public_category_import_csv(self):
