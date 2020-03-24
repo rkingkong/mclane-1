@@ -1,0 +1,131 @@
+<odoo>
+    <data>
+        <record id="view_import_csv_tree" model="ir.ui.view">
+            <field name="name">wk.import.csv.tree</field>
+            <field name="model">wk.import.csv</field>
+            <field name="arch" type="xml">
+                <tree string="CSV" decoration-danger="state == 'error'" decoration-success="state == 'success'" decoration-info="state == 'draft'" >
+                    <field name="name"/>
+                    <field name="csv_model"/>
+                    <field name="create_date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+         <record id="view_import_csv" model="ir.ui.view">
+            <field name="name">wk.import.csv.form</field>
+            <field name="model">wk.import.csv</field>
+            <field name="arch" type="xml">
+                <form string="Import Csv File">
+                    <header>
+                        <button name="action_import_csv" type="object" string="Import" class="oe_highlight" states="draft"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1><field name="name" readonly="1" /></h1>
+                        </div>
+                    <group>
+                        <group >
+                            <field name="csv_file" filename="name"
+                                 widget="attachments" attrs="{ 'readonly': [('state','not in',('draft'))]  }"/>
+                            <field name="csv_model" widget="radio" attrs="{'readonly': [('state','not in',('draft'))]}"/> 
+                        </group>
+                        <group name="sample">
+                            <field name="sample_attachment" filename="name" />
+                        </group>
+                        
+                    </group>
+                    <group string="Uploaded Data">
+                        <field name="upload_data" readonly="1" nolabel="1"/>
+                    </group>
+                    <group string="Log Summary">
+                        <field name="log_details" readonly="1" nolabel="1"/>
+                    </group>
+                </sheet>
+               </form>
+            </field>
+        </record>
+
+        <record id="image_bulk_uploder" model="ir.ui.view">
+            <field name="name">wk.import.csv.form</field>
+            <field name="model">wk.import.csv</field>
+            <field name="arch" type="xml">
+                <form string="Image Uploder">
+                    <sheet>
+                        <center><h1>Image Bulk Upload</h1></center>
+                        <group>
+                            <group>
+                                <field name="csv_file" filename="name"
+                                    widget="attachments" />
+                                <field name="csv_model" widget="radio" /> 
+                            </group>
+                            <group name="sample">
+                                <field name="sample_attachment" filename="name" />
+                                <field name="state" invisible="1"/>
+                            </group>
+                        </group>
+                        <label string="Note:-"/>
+                        <div attrs="{'invisible':[('csv_model','not in',['product.product','product.public.category'])]}">
+                                <ul>
+                                    <li>
+                                        Upload File should be Zip file.
+                                    </li>
+                                    <li>
+                                        In csv file 'id and image' field is required.
+                                    </li>
+                                    <li>
+                                        Download Sample zip file attachment.
+                                    </li>
+                                </ul>
+                        </div>
+                        <div attrs="{'invisible':[('csv_model','not in',['product.image'])]}">
+                            <ul>
+                                <li>
+                                    Upload File should be Zip file.
+                                </li>
+                                <li>
+                                    In csv file 'product_tmpl_id and image' field is required.
+                                </li>
+                                <li>
+                                    Download Sample zip file attachment.
+                                </li>
+                            </ul>
+                        </div>
+                        <button name="action_import_csv" string="Upload Now"   class="oe_highlight" type="object"  attrs= "{'invisible':[('state','!=','draft')]}"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+
+
+    <record id="action_import_csv" model="ir.actions.act_window">
+        <field name="name">History</field>
+        <field name="res_model">wk.import.csv</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+       <field name="view_id" ref="view_import_csv_tree"/>
+    </record>
+
+    <record id="action_import_csv_form" model="ir.actions.act_window">
+        <field name="name">Upload Images</field>
+        <field name="res_model">wk.import.csv</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+       <field name="view_id" ref="image_bulk_uploder"/>
+       <field name="target">inline</field>
+    </record>
+
+
+    <menuitem id="menu_image_uploader" name="Image Uploader"
+        parent="website.menu_website_configuration" sequence="4"
+        groups="sales_team.group_sale_salesman"/>
+
+    <menuitem  id="menu_image_uploader_menu1" name="Upload Images" action="action_import_csv_form" parent="menu_image_uploader" sequence="1"/>
+    <menuitem  id="menu_image_uploader_menu2" name="History" action="action_import_csv" parent="menu_image_uploader" sequence="2"/>
+    
+    </data>
+</odoo>
