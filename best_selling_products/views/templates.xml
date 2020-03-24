@@ -1,0 +1,77 @@
+<odoo>
+  <template id="carousel_best_selling" name="Best Selling Products">
+    <section class="best_selling mt-4 mb-4 px-5 pb-3">
+      <div class="header">
+        <div class="title" style="align-self: flex-end;">
+          <h3 style="text-align: left !important">BEST SELLING PRODUCTS</h3>
+        </div>
+        <div class="navs">
+          <div id="best_selling_nav" class="owl-nav owl-theme owl-controls"></div>
+        </div>
+      </div>
+      <hr></hr>
+      <div class="best_selling_carousel owl-carousel owl-theme">
+        <t t-foreach="range(0,3)" t-as="review">
+          <div class="carousel-item">
+            <a href="#">
+              <div class="carousel-item-image">
+                <img src="/best_selling_products/static/src/img/placeholder.png" class="item-image"/>
+              </div>
+              <div class="carousel-item-text">
+                <span class="item-kicker">Ipad Mini</span>
+                <h3 class="item-title">$ 140</h3>
+              </div>
+            </a>
+          </div>
+        </t>
+      </div>
+    </section>
+  </template>
+
+  <template id="latest_products_template">
+    <div class="header">
+      <h3>LATEST PRODUCTS</h3>
+    </div>
+    <hr/>
+    <div class="lists">
+      <ul class="list-group">
+        <t t-foreach="range(0,4)" t-as="x">
+          <a href="#">
+            <li class="list-group-item">
+              <div class="image-parent">
+                  <img src="/best_selling_products/static/src/img/placeholder.png" class="img-fluid" alt="quixote"/>
+              </div>
+              <div class="details">
+                <div class="name">
+                  Ipad Mini
+                </div>
+                <div class="price">
+                  $ 140
+                </div>
+              </div>
+            </li>
+          </a>
+        </t>
+      </ul>
+    </div>
+  </template>
+
+  <template id="products" inherit_id="website_sale.products">
+    <xpath expr="//div[hasclass('oe_structure')][last()]" position="inside">
+      <div class="wk_customization">
+        <div class="latest_products">
+          <t t-call="best_selling_products.latest_products_template"/>
+        </div>
+        <div class="best_selling_products">
+          <t t-call="best_selling_products.carousel_best_selling"/>
+        </div>
+      </div>
+    </xpath>
+  </template>
+
+  <!-- <template id="custom_snippets" inherit_id="website.snippets" name="WK snippets">
+    <xpath expr="//div[@id='snippet_structure']/div[@class='o_panel_body']" position="inside">
+      <t t-snippet="best_selling_products.carousel_best_selling" t-thumbnail="/best_selling_products/static/src/img/placeholder.png"/>
+    </xpath>
+  </template> -->
+</odoo>

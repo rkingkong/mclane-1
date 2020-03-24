@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<odoo>
+  <data>
+
+    <template id="asstes_frontend" inherit_id="website.assets_frontend">
+      <xpath expr="link[last()]" position="after">
+        <link rel="stylesheet" href="/best_selling_products/static/src/css/owl-carousel2/owl.carousel.min.css"/>
+        <link rel="stylesheet" href="/best_selling_products/static/src/css/owl-carousel2/owl.theme.default.css"/>
+        <!-- <link rel="stylesheet" href="/best_selling_products/static/src/css/owl-carousel1/owl.carousel.theme.min.css"/> -->
+        <link rel="stylesheet" href="/best_selling_products/static/src/css/best_selling_products.css"/>
+        <link rel="stylesheet" href="/best_selling_products/static/src/css/latest_products.css"/>
+      </xpath>
+      <xpath expr="script[last()]" position="after">
+        <script type="text/javascript" src="/best_selling_products/static/src/js/owl-carousel2/owl.carousel.min.js"></script>
+        <script type="text/javascript" src="/best_selling_products/static/src/js/main.js"></script>
+      </xpath>
+    </template>
+  </data>
+</odoo>

@@ -4,7 +4,7 @@
 #   Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>)
 #   See LICENSE file for full copyright and licensing details.
 #   License URL : <https://store.webkul.com/license.html/>
-# 
+#
 #################################################################################
 import base64, os
 from odoo import fields, models, api, tools
@@ -46,7 +46,7 @@ class ResConfigSettings(models.TransientModel):
     def set_values(self):
         super(ResConfigSettings, self).set_values()
         IrDefault = self.env['ir.default'].sudo()
-        IrDefault.set('res.config.settings', "wk_favicon", self.wk_favicon.decode("utf-8"))
+        IrDefault.set('res.config.settings', "wk_favicon", self.wk_favicon.decode("utf-8") if self.wk_favicon else '')
         IrDefault.set('res.config.settings', "title_brand", self.title_brand)
         IrDefault.set('res.config.settings', "odoo_text_replacement", self.odoo_text_replacement)
 

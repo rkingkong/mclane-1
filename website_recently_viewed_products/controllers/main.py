@@ -17,6 +17,8 @@ from odoo import http, tools, _
 from odoo.http import request
 from odoo.addons.website_sale.controllers.main import WebsiteSale
 
+import logging
+_logger = logging.getLogger(__name__)
 
 class WebsiteSale(WebsiteSale):
 
@@ -27,7 +29,7 @@ class WebsiteSale(WebsiteSale):
             self.add_viewed_product(product)
         result.qcontext['viewed_product'] = self.get_viewed_products()
         return result
-    
+
     @http.route([
         '/shop',
         '/shop/page/<int:page>',
