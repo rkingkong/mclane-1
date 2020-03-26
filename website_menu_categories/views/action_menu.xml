@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Actions  for multi create menu -->
+        <record id="create_menu" model="ir.actions.server">
+            <field name="name">Multi Create Menu</field>
+            <field name="model_id" ref="website_sale.model_product_public_category"/>
+            <field name="binding_model_id" ref="website_sale.model_product_public_category" />
+            <field name="state">code</field>
+            <field name="code">
+records.create_menu()
+            </field>
+        </record>
+    </data>
+</odoo>

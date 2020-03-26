@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>    <!-- Product Public Categories -->
+    <record id="product_public_category_form_viewi_inh" model="ir.ui.view">
+        <field name="name">product.public.category.form_inh</field>
+        <field name="model">product.public.category</field>
+        <field name="inherit_id" ref="website_sale.product_public_category_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                 <header>
+                            <button string="Create Menu" type="object" name="create_menu" class="oe_highlight" attrs="{'invisible':[('menu_id','!=',False)]}"/>
+                 </header>
+            </xpath>
+            <xpath expr="//field[@name='sequence']" position="after">
+                            <field name="menu_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
