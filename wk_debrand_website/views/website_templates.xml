@@ -4,8 +4,9 @@
 <!-- License URL : <https://store.webkul.com/license.html/> -->
 
 <odoo>
+
     <template id="layout_footer_copyright" inherit_id="website.layout_footer_copyright">
-        <xpath expr="//div[@t-ignore='true']" position="replace"></xpath> 
+        <xpath expr="//div[@class='container mt16 mb8']" position="replace"></xpath> 
     </template>
 
     <template id="wk_show_website_info_inherit" inherit_id="website.show_website_info">
