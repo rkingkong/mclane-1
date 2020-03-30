@@ -131,20 +131,20 @@ class WkImportCsv(models.Model):
 
     def unzip_csv_data(self):
         zip_file = self.read_zip()
-        outfile_path = os.path.abspath(__file__ + "/../../") + '/temp/'
+        outfile_path = os.path.abspath(__file__ + "/../../../../../data/") + '/temp/'
         zip_file.extractall(outfile_path)
         return zip_file, outfile_path
 
     def get_image_folder_path(self,zip_file):
         filenames = zip_file.namelist()
         path = os.path.abspath(__file__ + "/../../")
-        path = path + "/temp/" +filenames[0]
+        path = path + "/../../../data/temp/" + filenames[0]
         return path
 
     def get_csv_list(self,zip_file):
         filenames = zip_file.namelist()
         path = os.path.abspath(__file__ + "/../../")
-        path = path + "/temp/" +filenames[0]
+        path = path + "/../../../data/temp/" + filenames[0]
         data_lst = []
         for file in os.listdir(path):
             if file.endswith(".csv"):
