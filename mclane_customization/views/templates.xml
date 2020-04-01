@@ -62,7 +62,7 @@
             </h4>
 
         </xpath>
-        <xpath expr="//div[hasclass('product_price')]/h4" position="after">
+        <!-- <xpath expr="//div[hasclass('product_price')]/h4" position="after">
             <h5 class="oe_price_h5 css_editable_mode_hidden" >
                 <label>
                     MSRP
@@ -77,7 +77,7 @@
                 <span id="oe_margin" class="oe_price" style="white-space: nowrap;" t-esc="product.margin_msrp" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
                 <span id="oe_margin_hide" class="oe_price" style="white-space: nowrap;display:none;" t-esc="product.margin_msrp"/>
             </h5>
-        </xpath>
+        </xpath> -->
     </template>
 
 
@@ -357,5 +357,3 @@
 
     </template>
 </odoo>
-
-
