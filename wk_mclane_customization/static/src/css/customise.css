@@ -2,6 +2,11 @@
   padding: 0px;
   margin: 0px;
   width: 100%;
+  height: 100%;
+}
+
+.s_banner .carousel-inner .item .container .row.content{
+  height: 100%;
 }
 
 .s_banner .item .carousel-img{
@@ -13,4 +18,16 @@
 .s_banner .item .carousel-img .img-responsive{
   width: 100%;
   height: 100%;
+}
+
+.s_banner .carousel-img.hidden-sm{
+  display: unset !important;
+}
+
+.s_product_list .row .col-sm-4{
+  width: 50% !important;
+}
+
+.oe_website_sale form.pagination:first-of-type{
+  display: none;
 }

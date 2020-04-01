@@ -19,7 +19,7 @@
           <span id="show-product" t-att-data-show-product="website.get_max_and_allow_product_qty(2)"/>
           <t t-set="is_user_public" t-value="website.env.user == request.website.user_id"/>
           <t t-set="view_products" t-value="sha_in or token or not is_user_public"/>
-          <div class="container  hidden-xs recent-view-container" t-if="view_products and website.env.user.recently_viewed_products">
+          <div class="container recent-view-container" t-if="view_products and website.env.user.recently_viewed_products">
             <div style="color: #8c8c8c; font-weight:700; font-size:19px; background:#fff">Recently Viewed Products</div>
             <div id="owl-recentaly-viewed" class="owl-carousel wk_recently_view_container" style="display:none; background:#fff">
                 <t t-call="website_recently_viewed_products.product_recently_viewed">
