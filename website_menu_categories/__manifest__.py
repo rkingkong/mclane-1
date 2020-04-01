@@ -12,6 +12,7 @@
                              'website_sale',
                             ],
   "data"                 :  [
+                             'views/templates.xml',
                              'views/product_views.xml',
                              'views/action_menu.xml',
                             ],
