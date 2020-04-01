@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
    
-<template id="website_menu_categories_backend" inherit_id="web.assets_backend">
+<template id="website_menu_categories_frontend" inherit_id="web.assets_frontend">
     <xpath expr="//link[@rel='stylesheet']" position="after">
         <link rel="stylesheet" href="/website_menu_categories/static/src/css/main.css"/>
     </xpath>
