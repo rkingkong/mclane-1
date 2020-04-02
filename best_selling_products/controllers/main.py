@@ -28,6 +28,9 @@ class BestSelling(http.Controller):
         for product_id in product_ids:
             url = self.slugify((product_id.default_code or '') +' '+product_id.name+' '+str(product_id.id))+('?category='+str(category.id) if category else '')
             attrs = {
+                'in_wish': True if product_id.product_variant_ids[0] in request.env['product.wishlist'].current().mapped('product_id') else False,
+                'product_id': product_id.id,
+                'product_varient_id': product_id.product_variant_ids[0].id,
                 'name': product_id.name,
                 'image': product_id.image,
                 'price': product_id.list_price,

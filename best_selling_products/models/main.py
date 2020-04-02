@@ -36,7 +36,6 @@ class ProductPublicCategory(models.Model):
         total_best_selling_products = int(self.env['res.config.settings'].get_values()['total_best_selling_products']) or int("3")
         total_latest_products = int(self.env['res.config.settings'].get_values()['total_latest_products']) or int("3")
 
-        _logger.info("total_latest_products%r",total_latest_products)
 
         for website_id in self.env['website'].search([]):
             website_id.write({
@@ -48,9 +47,9 @@ class ProductPublicCategory(models.Model):
             temp_best_selling_data = dict()
             temp_latest_selling_data = dict()
             for product_id in rec.product_ids:
-                if product_id.website_published == True and product_id.publish_date:
+                if product_id.website_published == True:
                     temp_best_selling_data[product_id.id] = product_id.sales_count
-                    temp_latest_selling_data[product_id.id] = datetime.strptime(product_id.publish_date,'%Y-%m-%d %H:%M:%S')
+                    temp_latest_selling_data[product_id.id] = datetime.strptime(product_id.publish_date or product_id.create_date,'%Y-%m-%d %H:%M:%S')
 
             rec.best_selling_product_ids = [(6,0,nlargest(total_best_selling_products, temp_best_selling_data, key = temp_best_selling_data.get))]
             rec.latest_product_ids = [(6,0,nlargest(total_latest_products, temp_latest_selling_data, key = temp_latest_selling_data.get))]

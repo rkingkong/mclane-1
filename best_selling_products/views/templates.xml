@@ -57,7 +57,7 @@
   </template>
 
   <template id="products" inherit_id="website_sale.products">
-    <xpath expr="//div[hasclass('oe_structure')][last()]" position="inside">
+    <xpath expr="//div[hasclass('products_pager')][last()]" position="after">
       <div class="wk_customization">
         <div class="latest_products">
           <t t-call="best_selling_products.latest_products_template"/>
