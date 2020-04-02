@@ -28,7 +28,8 @@
   "data"                 :  [
                              'edi/license_expiry_alert_mail.xml',
                              'views/license_expiry_alert_cron.xml',
-                             'views/assets.xml'
+                             'views/assets.xml',
+                             'views/templates.xml'
                             ],
   "application"          :  True,
   "installable"          :  True,

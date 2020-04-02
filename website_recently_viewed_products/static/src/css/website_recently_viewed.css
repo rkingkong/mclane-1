@@ -36,3 +36,7 @@
 .item form {
     padding: 5px;
 }
+
+.hidden-xs.recent-view-container{
+  display: table-row !important;
+}

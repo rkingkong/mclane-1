@@ -1,6 +1,7 @@
 <odoo>
   <template id="assets_frontend_stock" inherit_id="website.assets_frontend" name="Assets Frontend Stock">
     <xpath expr="." position="inside">
+        <script type="text/javascript" src="/wk_mclane_customization/static/src/js/customise.js"></script>
         <link rel='stylesheet' href='/wk_mclane_customization/static/src/css/customise.css'/>
     </xpath>
   </template>

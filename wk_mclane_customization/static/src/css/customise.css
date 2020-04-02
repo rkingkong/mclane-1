@@ -25,9 +25,164 @@
 }
 
 .s_product_list .row .col-sm-4{
-  width: 50% !important;
+  /* width: 50% !important; */
+  margin-bottom: 0px !important;
 }
+
+.s_product_list img{
+  transform: unset;
+  max-height: 250px !important;
+}
+
 
 .oe_website_sale form.pagination:first-of-type{
   display: none;
 }
+
+.navbar-header button{
+  float: left !important;
+  display: none;
+}
+
+#customnav{
+  display: unset;
+}
+
+.closecustomnav{
+  order: -1;
+  background: #337ab7;
+}
+
+#closecustomnav{
+  background: #337ab7;
+  float: right;
+  color: white;
+}
+
+
+header ul.navbar-nav{
+  display: flex;
+  flex-flow: column;
+  position: absolute;
+  left: 0;
+  height: 100vh;
+  width:0px;
+  background: white;
+  top: 0;
+  margin: 0px !important;
+  /* overflow: hidden; */
+  transition: width 0.5s;
+}
+
+header ul.navbar-nav li{
+  opacity: 0;
+  transition: all 0.5s;
+}
+
+header ul.navbar-nav.open li{
+  opacity: 1;
+}
+
+header ul.navbar-nav.open{
+  /* overflow: visible; */
+  width: 40vw;
+}
+
+header .collapse{
+  display: block;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > li > a{
+  background: white;
+  color: #337ab7;
+  border-bottom: 1px solid #337ab7;
+}
+
+.navbar-default .navbar-nav > .active > a:hover{
+  color: white;
+  background: #337ab7;
+}
+
+.navbar-default .navbar-nav > li > a:hover{
+  background: #337ab7;
+  color: white;
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover{
+  background: #337ab7 !important;
+  color: white !important;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover{
+  background: #337ab7 !important;
+  color: white !important;
+}
+/* 3A5C7A */
+
+.navbar-nav .open .dropdown-menu {
+  position: static;
+  float: none;
+  width: auto;
+  margin-top: 0;
+  background-color: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+@media (max-width: 441px){
+  header ul.navbar-nav.open{
+    /* overflow: visible; */
+    width: 100vw;
+  }
+}
+
+@media (min-width: 768px){
+
+  header ul.navbar-nav.open{
+    /* overflow: visible; */
+    width: 30vw;
+  }
+
+  /* .navbar-collapse {
+     position: absolute;
+     top: 54px;
+     left: 0;
+     padding-left: 15px;
+     padding-right: 15px;
+     padding-bottom: 15px;
+     width: 100%;
+ }
+ .navbar-collapse.collapsing {
+     height: auto;
+     -webkit-transition: left 0.3s ease;
+     -o-transition: left 0.3s ease;
+     -moz-transition: left 0.3s ease;
+     transition: left 0.3s ease;
+     left: -100%;
+ }
+ .navbar-collapse.show {
+     left: 0;
+     -webkit-transition: left 0.3s ease-in;
+     -o-transition: left 0.3s ease-in;
+     -moz-transition: left 0.3s ease-in;
+     transition: left 0.3s ease-in;
+ } */
+ /* .navbar-collapse {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 280px;
+    height: 100%;
+} */
+
+}
+
+/* .navbar-collapse {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 280px;
+    height: 100%;
+} */
